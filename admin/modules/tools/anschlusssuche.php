@@ -220,7 +220,6 @@ if ($action === 'field_save' && $mybb->request_method === 'post') {
         $errors[] = $lang->anschlusssuche_error_options;
     }
     if ($fieldtype === 'age_range' && !$errors) {
-        $age = Anschlusssuche_Repository::age_field((string)$type);
         foreach (Anschlusssuche_Repository::fields((string)$type, false) as $f) {
             if ($f['fieldtype'] === 'age_range' && (int)$f['id'] !== $id) {
                 $errors[] = $lang->anschlusssuche_error_age_unique;
@@ -234,7 +233,6 @@ if ($action === 'field_save' && $mybb->request_method === 'post') {
     }
 
     if ($errors) {
-        $mybb->input['action'] = 'field_edit';
         $action = 'field_edit';
         $field_errors = $errors;
     } else {

@@ -21,12 +21,22 @@ class Anschlusssuche_FormHandler
         return $mybb->get_input('anschlusssuche_present', MyBB::INPUT_INT) === 1;
     }
 
-    /** Typ eines Forums für Thread-Formulare (nur single/group), sonst ''. */
-    public static function thread_type(int $fid): string
+    /**
+     * Gesuchstyp für Thread-Formulare (nur single/group), sonst ''.
+     * Hat der Thread schon einen Eintrag, gilt dessen Typ – sonst würde z.B. ein
+     * Gruppengesuch in einem gemischten Archivforum beim Bearbeiten umgewandelt.
+     */
+    public static function thread_type(int $fid, int $tid = 0): string
     {
         $forum = Anschlusssuche_Repository::forum($fid);
         if (!$forum || $forum['type'] === 'loose') {
             return '';
+        }
+        if ($tid > 0) {
+            $entry = Anschlusssuche_Repository::entry_by_tid($tid);
+            if ($entry && in_array($entry['type'], ['single', 'group'], true)) {
+                return (string)$entry['type'];
+            }
         }
         return (string)$forum['type'];
     }
@@ -114,7 +124,7 @@ class Anschlusssuche_FormHandler
      */
     public static function thread_form(int $fid, ?int $tid): string
     {
-        $type = self::thread_type($fid);
+        $type = self::thread_type($fid, (int)$tid);
         if ($type === '') {
             return '';
         }
@@ -227,9 +237,14 @@ class Anschlusssuche_FormHandler
      */
     public static function validate_thread($handler, int $fid): void
     {
-        global $lang;
+        global $mybb;
 
-        $type = self::thread_type($fid);
+        // Drafts may be saved incomplete; fields are checked when the draft is posted.
+        if ($mybb->get_input('savedraft')) {
+            return;
+        }
+        $tid = isset($handler->data['tid']) ? (int)$handler->data['tid'] : 0;
+        $type = self::thread_type($fid, $tid);
         if ($type === '') {
             return;
         }
@@ -243,7 +258,7 @@ class Anschlusssuche_FormHandler
 
     public static function save_thread(int $tid, int $fid, int $uid): void
     {
-        $type = self::thread_type($fid);
+        $type = self::thread_type($fid, $tid);
         if ($type === '' || $tid <= 0) {
             return;
         }
@@ -260,11 +275,7 @@ class Anschlusssuche_FormHandler
             'type'   => $type,
         ];
         $entry['title'] = (string)$thread['subject'];
-        $existing = Anschlusssuche_Repository::entry_by_tid($tid);
-        if ($existing) {
-            // A type change of the forum must not silently drop the stored type.
-            $entry['type'] = $type;
-        } else {
+        if (!Anschlusssuche_Repository::entry_by_tid($tid)) {
             $entry['created_at'] = (int)$thread['dateline'];
         }
         Anschlusssuche_EntryService::save($entry, $input['values'], $input['links']);

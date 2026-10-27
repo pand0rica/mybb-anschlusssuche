@@ -438,7 +438,7 @@ class Anschlusssuche_Installer
 
     public static function usercp_row(): string
     {
-        return '<tr><td class="trow1 smalltext"><a href="usercp.php?action=anschlusssuche_loose" class="usercp_nav_item usercp_nav_anschlusssuche">{$lang->anschlusssuche_usercp_nav}</a></td></tr>';
+        return '<tr><td class="trow1 smalltext"><a href="usercp.php?action=anschlusssuche_loose" class="usercp_nav_item usercp_nav_anschlusssuche" style="background-image: url(\'data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%2216%22 height=%2216%22%3E%3Ccircle cx=%226.5%22 cy=%226.5%22 r=%224.5%22 fill=%22none%22 stroke=%22%23555%22 stroke-width=%222%22/%3E%3Cpath d=%22M10 10l4 4%22 stroke=%22%23555%22 stroke-width=%222%22/%3E%3C/svg%3E\');">{$lang->anschlusssuche_usercp_nav}</a></td></tr>';
     }
 
     public static function install_usercp_link(): void
@@ -506,8 +506,9 @@ class Anschlusssuche_Installer
 
     private static function require_theme_functions(): void
     {
+        global $config;
+
         if (!defined('MYBB_ADMIN_DIR')) {
-            global $config;
             $admin_dir = isset($config['admin_dir']) ? $config['admin_dir'] : 'admin';
             define('MYBB_ADMIN_DIR', MYBB_ROOT . $admin_dir . '/');
         }

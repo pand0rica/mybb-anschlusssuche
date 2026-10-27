@@ -30,7 +30,8 @@ if (isset($plugins) && is_object($plugins)) {
         $plugins->add_hook('admin_tools_permissions', 'anschlusssuche_admin_permissions');
     } else {
         $plugins->add_hook('global_start', 'anschlusssuche_handle_global_start');
-        $plugins->add_hook('global_intermediate', 'anschlusssuche_handle_header');
+        // Early priority: header plugins evaluate their templates at global_intermediate (often 0-20).
+        $plugins->add_hook('global_intermediate', 'anschlusssuche_handle_header', -5);
 
         $plugins->add_hook('newthread_start', 'anschlusssuche_handle_newthread_form');
         $plugins->add_hook('newthread_do_newthread_end', 'anschlusssuche_handle_newthread_save');

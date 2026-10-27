@@ -297,7 +297,7 @@ class Anschlusssuche_HeaderService
                 return '';
             }
             $title = (string)$person['title'];
-            $url = $person['link'] !== '' ? htmlspecialchars_uni($person['link']) : '';
+            $url = $person['link'] !== '' ? htmlspecialchars_uni($person['link']) : 'anschluss.php?type=loose';
             $fields = Anschlusssuche_Renderer::fieldline($person, 'show_header');
         }
 

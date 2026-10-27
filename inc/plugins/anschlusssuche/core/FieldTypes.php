@@ -536,7 +536,6 @@ class Anschlusssuche_FieldTypes
                 return "EXISTS (SELECT 1 FROM {$p}anschlusssuche_values v WHERE v.entry_id = e.id AND v.field_id = {$fid} AND " . implode(' AND ', $cond) . ')';
 
             case 'multi':
-                $val = $db->escape_string($raw);
                 return "EXISTS (SELECT 1 FROM {$p}anschlusssuche_values v WHERE v.entry_id = e.id AND v.field_id = {$fid}"
                     . " AND CONCAT('\\n', v.value, '\\n') LIKE '%\\n" . $db->escape_string_like($raw) . "\\n%')";
 
