@@ -158,14 +158,13 @@ Icon-Zeile der Felder mit `show_list = 1` (Icon aus `fields.icon`), „Anschluss
 | `forumdisplay_start` | `anschlusssuche_handle_forumdisplay_start` | In aktiven Foren `$templates->cache['forumdisplay_thread']` durch `anschlusssuche_forumdisplay_thread` ersetzen, nur zur Laufzeit |
 | `forumdisplay_before_thread` | `anschlusssuche_handle_forumdisplay_bulk` | Einträge/Werte/Links aller `$args['tids']` mit wenigen Queries laden |
 | `forumdisplay_thread_end` | `anschlusssuche_handle_forumdisplay_thread` | Zeilenvariablen (`$anschlusssuche_status`, `_fieldline`, `_links`, `_rowclass`) für die aktuelle Zeile setzen |
-| `forumdisplay_threadlist` | `anschlusssuche_handle_forumdisplay_threadlist` | Filterleiste (→ GET an `anschluss.php`) und bei Typ loose der Kartenblock über der Liste |
+| `forumdisplay_end` | `anschlusssuche_handle_forumdisplay_end` | Filterleiste (→ GET an `anschluss.php`) und bei Typ loose der Kartenblock, vor `$threadslist` gesetzt (`forumdisplay_threadlist` feuert zu früh) |
 | `class_moderation_delete_thread` | `anschlusssuche_handle_delete_thread` | Eintrag + Werte + Links + Header-Einträge löschen |
 | `class_moderation_move_simple`, `class_moderation_move_thread_redirect`, `class_moderation_move_threads` | `anschlusssuche_handle_move_*` | `entries.fid` nachziehen |
 | `class_moderation_merge_threads` | `anschlusssuche_handle_merge_threads` | Eintrag des weggefallenen Threads löschen |
 | `member_profile_end` | `anschlusssuche_handle_profile` | `{$anschlusssuche_profile}` (Einzel, Gruppe, lose inkl. Relatives; alle Accounts) |
 | `usercp_menu` (Prio 40) | `anschlusssuche_handle_usercp_menu` | Menüpunkt „Lose Gesuche“ (+ „Header-Gutscheine“ wenn Shop aktiv) – `boilerplate.md` §14 |
 | `usercp_start` | `anschlusssuche_handle_usercp` | Aktionen `anschlusssuche_loose`, `anschlusssuche_loose_edit`, `do_anschlusssuche_loose_*`, `anschlusssuche_credits`, `do_anschlusssuche_redeem` |
-| `xmlhttp` | `anschlusssuche_handle_xmlhttp` | `action=anschlusssuche_users` – Username-Autocomplete (Login-Pflicht, max. 10 Treffer) |
 | `datahandler_user_delete_start` | `anschlusssuche_handle_user_delete` | lose Gesuche + Gutscheine des Users löschen, `links.uid` → NULL (Name bleibt) |
 | `relatives_profile_wanted_cards` | `anschlusssuche_handle_relatives_cards` | **nicht** registrieren in 1.0 (Profil zeigt bereits alles); als Option dokumentiert |
 | `admin_tools_menu` / `admin_tools_action_handler` / `admin_tools_permissions` | `anschlusssuche_admin_*` | ACP-Tools-Modul |
@@ -244,6 +243,9 @@ Ausbau ist als eigener Plan-Schritt (15, optional) beschrieben.
   `.anschlusssuche-header__fields`, `.anschlusssuche-header__field` (Themes passen ihr CSS an;
   die H4W-Migration ersetzt `{$gesuche}` in den Header-Templates).
 
+## Autocomplete
+Die Anschlussliste nutzt den Core-Endpunkt `xmlhttp.php?action=get_users` (`jscripts/anschlusssuche.js`); es gibt keinen eigenen xmlhttp-Handler.
+
 ## Suche (`anschluss.php`)
 - Typ-Tabs (alle / Einzel / Gruppe / lose), Kernfilter Status, Alter (von–bis, Überlappung),
   Freitext (Titel + Text-Felder), plus alle ACP-Felder mit `filterable = 1` des gewählten Typs.
@@ -267,6 +269,8 @@ Ausbau ist als eigener Plan-Schritt (15, optional) beschrieben.
 - ACP: Admin-Berechtigung `tools/anschlusssuche`.
 
 ## ACP (`admin/modules/tools/anschlusssuche.php`, Tabs via `output_nav_tabs()`)
+Recht `tools/anschlusssuche`: `activate()` vergibt es an alle Admins/Gruppen mit Werkzeuge-Rechten, `uninstall()` entfernt es.
+
 1. **Foren** – aktive Unterforen hinzufügen/entfernen, Typ, Archiv-Flag, Filterleiste an/aus.
 2. **Felder** – je Typ (Sub-Tabs Einzel/Gruppe/lose): Liste mit Reihenfolge, Hinzufügen/
    Bearbeiten (Titel, Schlüssel, Beschreibung, Feldtyp, Pflicht, Optionen, Icon, Anzeige
