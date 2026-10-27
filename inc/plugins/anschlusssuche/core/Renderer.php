@@ -388,7 +388,7 @@ class Anschlusssuche_Renderer
                 $sections[$key][] = $entry;
             }
         }
-        if (Anschlusssuche_RelativesAdapter::available()) {
+        if (empty($mybb->settings['anschlusssuche_profile_hide_relatives']) && Anschlusssuche_RelativesAdapter::available()) {
             foreach (Anschlusssuche_RelativesAdapter::search(['owner_uids' => $uids, 'limit' => 100]) as $person) {
                 $sections['loose'][] = $person;
             }

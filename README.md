@@ -119,7 +119,9 @@ well (name, age, gender, relation, description, link). Those are edited in *Rela
 
 `{$anschlusssuche_profile}` lists the single, group and loose ads of the profile owner – with the
 Enhanced Account Switcher of **all accounts of the same player**, also when viewing a secondary
-account. Finished ads can be shown as an extra section (setting).
+account. Finished ads can be shown as an extra section (setting). Persons from *Relatives* are
+listed under loose ads unless *Hide Relatives persons in profile* is set – useful when the
+*Relatives* wanted box already appears in the same profile.
 
 ### Header teaser
 
@@ -175,6 +177,8 @@ in the forums opens this page with the chosen filters.
   (0 male, 1 female, 2 diverse by default) to the labels shown and searched.
 - **Show in profile** – fill `{$anschlusssuche_profile}`.
 - **Show finished ads in profile** – extra section for ads in archive forums.
+- **Hide Relatives persons in profile** – leave persons from *Relatives* out of the profile
+  block, e.g. when the *Relatives* wanted box is already shown in the profile (default: off).
 - **Header teaser** – fill `{$anschlusssuche_header}`.
 - **Header: number of ads** – fixed + random.
 - **Header: source forums** – forums for random ads; forums without an ad type show the subject

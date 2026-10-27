@@ -28,7 +28,8 @@ management for wanted characters.
   optional *Relatives* plugin (version 2.2.0 or later), shown as cards above the thread list of a
   forum of type *loose*.
 - Profile block `{$anschlusssuche_profile}` with the ads of all accounts of a player
-  (Enhanced Account Switcher aware).
+  (Enhanced Account Switcher aware); persons from *Relatives* can be hidden there with the setting
+  *Hide Relatives persons in profile* to avoid showing them twice next to the Relatives wanted box.
 - Header teaser `{$anschlusssuche_header}` with fixed, time-limited entries (managed in the ACP)
   and random ads from selected forums.
 - Search page `anschluss.php` over all ad types with tabs, status, age overlap, text and field

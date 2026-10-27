@@ -126,6 +126,7 @@ Angelegt in `install()`, nachgerüstet idempotent in `activate()` (`boilerplate.
 | `anschlusssuche_relatives_gender_map` | textarea (`0=männlich\n1=weiblich\n2=divers`) | Abbildung Relatives-Geschlechtscode → Anzeigetext/Filterwert |
 | `anschlusssuche_profile_enabled` | yesno (1) | Gesuche-Block im Profil |
 | `anschlusssuche_profile_show_done` | yesno (0) | Erledigte Gesuche (Archiv) im Profil als eigener Abschnitt |
+| `anschlusssuche_profile_hide_relatives` | yesno (0) | Relatives-Personen im Profilblock ausblenden (gegen Doppelanzeige mit der Gesucht-Box von Relatives) |
 | `anschlusssuche_header_enabled` | yesno (1) | Header-Teaser |
 | `anschlusssuche_header_count` | numeric (3) | Anzahl Einträge im Header (fix + zufällig) |
 | `anschlusssuche_header_forums` | forumselect | Quellforen für Zufallseinträge (dürfen auch nicht-aktive Foren sein, z.B. „Charakterabgabe“; dann nur Titel ohne Felder) |

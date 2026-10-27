@@ -259,6 +259,7 @@ class Anschlusssuche_Installer
             ['anschlusssuche_relatives_gender_map', 'Relatives gender mapping', 'One line per code: code=label. Maps the Relatives gender code to the label used for display and filters.', 'textarea', "0=male\n1=female\n2=diverse"],
             ['anschlusssuche_profile_enabled', 'Show in profile', 'Show the ads block in user profiles (variable {$anschlusssuche_profile}).', 'yesno', '1'],
             ['anschlusssuche_profile_show_done', 'Show finished ads in profile', 'Show ads from archive forums as their own section in the profile.', 'yesno', '0'],
+            ['anschlusssuche_profile_hide_relatives', 'Hide Relatives persons in profile', 'Do not list persons from the Relatives plugin in the profile block (useful when the Relatives wanted box is shown in the profile as well).', 'yesno', '0'],
             ['anschlusssuche_header_enabled', 'Header teaser', 'Fill the variable {$anschlusssuche_header} with fixed and random ads.', 'yesno', '1'],
             ['anschlusssuche_header_count', 'Header: number of ads', 'Total number of ads in the header (fixed + random).', 'numeric', '3'],
             ['anschlusssuche_header_forums', 'Header: source forums', 'Forums from which random ads are picked. Forums without an assigned ad type only show the subject.', 'forumselect', ''],
