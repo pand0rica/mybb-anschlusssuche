@@ -160,7 +160,8 @@ class Anschlusssuche_RelativesAdapter
             'avatar'        => self::safe_url(isset($p['avatar']) ? (string)$p['avatar'] : ''),
             'values'        => [],
             'links'         => [],
-            'created_at'    => 0,
+            'created_at'    => isset($p['created_at']) ? (int)$p['created_at'] : 0,
+            'updated_at'    => isset($p['updated_at']) ? (int)$p['updated_at'] : 0,
         ];
     }
 

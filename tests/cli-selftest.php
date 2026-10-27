@@ -170,6 +170,23 @@ if (Anschlusssuche_RelativesAdapter::available()) {
     echo "  skip (Relatives with relatives_count_persons() not active)\n";
 }
 
+echo "Forum list\n";
+$test_fid = 999990; // no real forum needed, only the mapping
+Anschlusssuche_Repository::save_forum($test_fid, 'loose', 0, 1, 1);
+$loose_id = anschlusssuche_entry_save(['source' => 'loose', 'type' => 'loose', 'uid' => (int)$some_user['uid'], 'title' => 'SELFTEST forumlist', 'updated_at' => TIME_NOW + 5]);
+$bit = Anschlusssuche_ForumList::apply(['fid' => $test_fid, 'threads' => 2, 'posts' => 7, 'lastpost' => TIME_NOW - 100, 'lastposter' => 'x', 'lastposteruid' => 1, 'lastpostsubject' => 'old', 'lastposttid' => 5]);
+$sum = Anschlusssuche_ForumList::summary();
+check('forumbit counts loose ads', [2 + $sum['count'], 7 + $sum['count']], [(int)$bit['threads'], (int)$bit['posts']]);
+check('forumbit newest loose ad wins', ['SELFTEST forumlist', -$test_fid], [$bit['lastpostsubject'], $bit['lastposttid']]);
+$html = '<a href="' . get_thread_link(-$test_fid, 0, 'lastpost') . '">x</a><a href="' . get_thread_link(-$test_fid) . '">y</a><a href="' . get_thread_link(-($test_fid * 10)) . '">z</a>';
+$fixed = Anschlusssuche_ForumList::fix_links($html);
+check('placeholder links point to the forum', 2, substr_count($fixed, get_forum_link($test_fid)));
+check('longer negative ids untouched', true, strpos($fixed, get_thread_link(-($test_fid * 10))) !== false);
+$other = Anschlusssuche_ForumList::apply(['fid' => 1, 'threads' => 0, 'posts' => 0, 'lastpost' => 0]);
+check('non-loose forum unchanged', 0, (int)$other['threads']);
+Anschlusssuche_Repository::delete_entry($loose_id);
+Anschlusssuche_Repository::delete_forum($test_fid);
+
 echo "Cleanup\n";
 Anschlusssuche_Repository::delete_entry($id);
 check('entry deleted incl. header', 0, (int)$db->fetch_field($db->simple_select('anschlusssuche_header', 'COUNT(*) AS c', 'entry_id = ' . $id), 'c'));

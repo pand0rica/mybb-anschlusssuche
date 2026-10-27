@@ -51,6 +51,7 @@ kommen über die externe Migration 012 (siehe unten).
           SearchService.php    # Suche über Einträge + Relatives, Pagination
           HeaderService.php    # Auswahl fix/zufällig, header_add-API
           RelativesAdapter.php # einziger Zugriff auf Relatives (öffentliche API)
+          ForumList.php        # Forenliste: Zähler + letzter Beitrag für Foren vom Typ loose
           AccountResolver.php  # Accountswitcher: alle Accounts eines Spielers
           ShopBridge.php       # Gutschein-Logik (vorbereitet, Hook später)
       modules/
@@ -163,6 +164,8 @@ Icon-Zeile der Felder mit `show_list = 1` (Icon aus `fields.icon`), „Anschluss
 | `class_moderation_delete_thread` | `anschlusssuche_handle_delete_thread` | Eintrag + Werte + Links + Header-Einträge löschen |
 | `class_moderation_move_simple`, `class_moderation_move_thread_redirect`, `class_moderation_move_threads` | `anschlusssuche_handle_move_*` | `entries.fid` nachziehen |
 | `class_moderation_merge_threads` | `anschlusssuche_handle_merge_threads` | Eintrag des weggefallenen Threads löschen |
+| `build_forumbits_forum` | `anschlusssuche_handle_forumbit` | Forenliste: Foren vom Typ loose zählen lose Gesuche bei Themen/Beiträgen mit und zeigen das neueste als letzten Beitrag (Thread-ID = -fid als Platzhalter) |
+| `pre_output_page` | `anschlusssuche_handle_pre_output` | Platzhalter-Links (Thread-ID -fid) auf das Forum umbiegen (`ForumList::fix_links()`) |
 | `member_profile_end` | `anschlusssuche_handle_profile` | `{$anschlusssuche_profile}` (Einzel, Gruppe, lose inkl. Relatives; alle Accounts) |
 | `usercp_menu` (Prio 40) | `anschlusssuche_handle_usercp_menu` | Menüpunkt „Lose Gesuche“ (+ „Header-Gutscheine“ wenn Shop aktiv) – `boilerplate.md` §14 |
 | `usercp_start` | `anschlusssuche_handle_usercp` | Aktionen `anschlusssuche_loose`, `anschlusssuche_loose_edit`, `do_anschlusssuche_loose_*`, `anschlusssuche_credits`, `do_anschlusssuche_redeem` |
@@ -193,7 +196,7 @@ Icon-Zeile der Felder mit `show_list = 1` (Icon aus `fields.icon`), „Anschluss
   (= Mindestversion mit API-Erweiterung, siehe unten). Fehlt eins davon, werden nur die eigenen
   losen Gesuche gezeigt – kein Fehler. Zugriff **ausschließlich** über `RelativesAdapter` →
   öffentliche Relatives-API; nie `relatives_*`-Tabellen.
-  - **Mindestversion Relatives 2.2.0** – diese API-Erweiterung ist dort umgesetzt:
+  - **Mindestversion Relatives 2.2.0** – diese API-Erweiterung ist dort umgesetzt (dazu `created_at`/`updated_at` je Person und `order = updated` für die Forenliste):
     - `relatives_search_persons()` neue Filter-Keys `limit`, `offset`, `order`
       (`name`|`age`|`newest`), `owner_uids` (int[]), `ids` (int[]).
     - neue Funktion `relatives_count_persons(array $filters): int` (gleiche Filter, ohne

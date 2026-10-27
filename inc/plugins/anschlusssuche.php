@@ -22,6 +22,7 @@ require_once ANSCHLUSSSUCHE_DIR . 'core/RelativesAdapter.php';
 require_once ANSCHLUSSSUCHE_DIR . 'core/HeaderService.php';
 require_once ANSCHLUSSSUCHE_DIR . 'core/SearchService.php';
 require_once ANSCHLUSSSUCHE_DIR . 'core/FormHandler.php';
+require_once ANSCHLUSSSUCHE_DIR . 'core/ForumList.php';
 
 if (isset($plugins) && is_object($plugins)) {
     if (defined('IN_ADMINCP')) {
@@ -42,6 +43,8 @@ if (isset($plugins) && is_object($plugins)) {
         $plugins->add_hook('forumdisplay_before_thread', 'anschlusssuche_handle_forumdisplay_bulk');
         $plugins->add_hook('forumdisplay_thread_end', 'anschlusssuche_handle_forumdisplay_thread');
         $plugins->add_hook('forumdisplay_end', 'anschlusssuche_handle_forumdisplay_end');
+        $plugins->add_hook('build_forumbits_forum', 'anschlusssuche_handle_forumbit');
+        $plugins->add_hook('pre_output_page', 'anschlusssuche_handle_pre_output');
 
         $plugins->add_hook('member_profile_end', 'anschlusssuche_handle_profile');
 
@@ -348,6 +351,32 @@ function anschlusssuche_handle_forumdisplay_end(): void
     if ($block !== '') {
         $threadslist = $block . (string)$threadslist;
     }
+}
+
+/**
+ * Forenliste: Foren vom Typ "lose" zählen lose Gesuche mit und zeigen das neueste als letzten Beitrag.
+ *
+ * @param array $forum
+ * @return array
+ */
+function anschlusssuche_handle_forumbit($forum)
+{
+    if (!anschlusssuche_enabled() || !is_array($forum)) {
+        return $forum;
+    }
+    return Anschlusssuche_ForumList::apply($forum);
+}
+
+/**
+ * @param string $contents
+ * @return string
+ */
+function anschlusssuche_handle_pre_output($contents)
+{
+    if (!anschlusssuche_enabled() || !is_string($contents)) {
+        return $contents;
+    }
+    return Anschlusssuche_ForumList::fix_links($contents);
 }
 
 function anschlusssuche_handle_profile(): void

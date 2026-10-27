@@ -26,7 +26,8 @@ management for wanted characters.
 - Connection list field: name + role, names can be linked to accounts with username suggestions.
 - Loose ads: own ads in the User CP (create, edit, delete) plus persons marked as wanted in the
   optional *Relatives* plugin (version 2.2.0 or later), shown as cards above the thread list of a
-  forum of type *loose*.
+  forum of type *loose*. In the forum list such a forum counts the loose ads in *Threads*/*Posts*
+  and shows the newest loose ad as *Last post*, so it does not look empty.
 - Profile block `{$anschlusssuche_profile}` with the ads of all accounts of a player
   (Enhanced Account Switcher aware); persons from *Relatives* can be hidden there with the setting
   *Hide Relatives persons in profile* to avoid showing them twice next to the Relatives wanted box.

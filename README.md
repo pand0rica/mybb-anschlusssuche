@@ -113,6 +113,10 @@ in the profile. Who may create them and how many per account is set in the setti
 With *Relatives* 2.2.0+ installed, every person marked as wanted there is shown as a loose ad as
 well (name, age, gender, relation, description, link). Those are edited in *Relatives*, not here.
 
+So that the loose-ads forum does not look empty, the forum list (index and sub-forum lists)
+counts all loose ads in its *Threads* and *Posts* columns and shows the newest loose ad as
+*Last post* whenever it is newer than the last real post; the link leads into the forum.
+
 ![Loose ads](docs/screenshots/loose-ads.png)
 
 ### Profile
