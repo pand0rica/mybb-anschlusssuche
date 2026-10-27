@@ -1,0 +1,1 @@
+<div class="anschlusssuche-header__item {$item_class}"><a href="{$item_url}" class="anschlusssuche-header__link">&raquo; <span class="anschlusssuche-header__title">{$item_title}</span></a><div class="anschlusssuche-header__fields">{$item_fields}</div></div>

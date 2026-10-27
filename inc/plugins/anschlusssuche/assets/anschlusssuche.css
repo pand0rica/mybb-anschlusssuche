@@ -1,0 +1,151 @@
+/* Anschluss-Suchmaschine – colours via variables so themes can override them. */
+:root {
+	--anschlusssuche-free: #2c8d3a;
+	--anschlusssuche-reserved: #b7862b;
+	--anschlusssuche-taken: #a51c1c;
+	--anschlusssuche-done: #777777;
+	--anschlusssuche-card-bg: rgba(127, 127, 127, 0.08);
+	--anschlusssuche-card-border: rgba(127, 127, 127, 0.25);
+}
+
+/* Status badge */
+.anschlusssuche-status {
+	display: inline-block;
+	font-weight: bold;
+	white-space: nowrap;
+}
+.anschlusssuche-status::before { content: "["; }
+.anschlusssuche-status::after { content: "]"; }
+.anschlusssuche-status--free { color: var(--anschlusssuche-free); }
+.anschlusssuche-status--reserved { color: var(--anschlusssuche-reserved); }
+.anschlusssuche-status--taken { color: var(--anschlusssuche-taken); }
+.anschlusssuche-status--done { color: var(--anschlusssuche-done); }
+
+/* Field line (thread list, cards, header) */
+.anschlusssuche-meta:empty,
+.anschlusssuche-card__fields:empty,
+.anschlusssuche-card__desc:empty,
+.anschlusssuche-header__fields:empty {
+	display: none;
+}
+.anschlusssuche-field,
+.anschlusssuche-links {
+	display: inline-block;
+	margin-right: 0.8em;
+	white-space: nowrap;
+}
+.anschlusssuche-field--links,
+.anschlusssuche-field--tags {
+	white-space: normal;
+}
+.anschlusssuche-row--done .anschlusssuche-meta {
+	opacity: 0.75;
+}
+
+/* Cards */
+.anschlusssuche-cards {
+	display: grid;
+	grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+	gap: 8px;
+}
+.anschlusssuche-card {
+	padding: 8px 10px;
+	border: 1px solid var(--anschlusssuche-card-border);
+	border-radius: 6px;
+	background: var(--anschlusssuche-card-bg);
+}
+.anschlusssuche-card__head {
+	font-weight: bold;
+	margin-bottom: 3px;
+}
+.anschlusssuche-card__meta,
+.anschlusssuche-card__fields {
+	margin-bottom: 3px;
+}
+.anschlusssuche-card__source:empty,
+.anschlusssuche-card__owner:empty {
+	display: none;
+}
+.anschlusssuche-card__desc {
+	margin-top: 4px;
+}
+.anschlusssuche-empty {
+	padding: 6px 0;
+}
+
+/* Filters */
+.anschlusssuche-filters {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
+	gap: 6px 14px;
+}
+.anschlusssuche-filter {
+	white-space: nowrap;
+}
+.anschlusssuche-filter__title {
+	font-weight: bold;
+}
+.anschlusssuche-input-number {
+	width: 5em;
+}
+
+/* Search tabs */
+.anschlusssuche-tabs {
+	margin-bottom: 8px;
+}
+.anschlusssuche-tab {
+	display: inline-block;
+	padding: 4px 10px;
+	margin-right: 4px;
+	border: 1px solid var(--anschlusssuche-card-border);
+	border-radius: 4px;
+}
+.anschlusssuche-tab--active {
+	font-weight: bold;
+	background: var(--anschlusssuche-card-bg);
+}
+
+/* Forms */
+.anschlusssuche-choice {
+	display: inline-block;
+	margin-right: 10px;
+	white-space: nowrap;
+}
+.anschlusssuche-required {
+	color: var(--anschlusssuche-taken);
+}
+.anschlusssuche-links-row {
+	margin-bottom: 4px;
+}
+.anschlusssuche-inline-form {
+	display: inline;
+	margin: 0;
+}
+.anschlusssuche-inline-form + .anschlusssuche-inline-form {
+	margin-left: 4px;
+}
+.anschlusssuche-actions {
+	white-space: nowrap;
+}
+
+/* Profile */
+.anschlusssuche-profile__section {
+	margin-bottom: 10px;
+}
+.anschlusssuche-profile__title {
+	margin-bottom: 4px;
+}
+
+/* Header teaser */
+.anschlusssuche-header__item {
+	margin-bottom: 5px;
+}
+.anschlusssuche-header__fields .anschlusssuche-field {
+	margin-right: 0.5em;
+}
+
+/* User CP navigation icon */
+.usercp_nav_anschlusssuche {
+	background-image: url('data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%2216%22 height=%2216%22%3E%3Ccircle cx=%226.5%22 cy=%226.5%22 r=%224.5%22 fill=%22none%22 stroke=%22%23555%22 stroke-width=%222%22/%3E%3Cpath d=%22M10 10l4 4%22 stroke=%22%23555%22 stroke-width=%222%22/%3E%3C/svg%3E');
+}

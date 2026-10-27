@@ -1,0 +1,2 @@
+<input type="number" min="0" class="textbox anschlusssuche-input-number" name="anschlusssuche_core[slots_taken]" value="{$slots_taken}" title="{$lang->anschlusssuche_core_slots_taken}" /> / <input type="number" min="0" class="textbox anschlusssuche-input-number" name="anschlusssuche_core[slots_total]" value="{$slots_total}" title="{$lang->anschlusssuche_core_slots_total}" />
+<label class="anschlusssuche-choice"><input type="checkbox" class="checkbox" name="anschlusssuche_core[slots_open_end]" value="1"{$open_checked} /> {$lang->anschlusssuche_core_slots_open}</label>

@@ -1,0 +1,1 @@
+<form action="usercp.php" method="get" class="anschlusssuche-inline-form"><input type="hidden" name="action" value="anschlusssuche_loose_edit" /><input type="submit" class="button" value="{$lang->anschlusssuche_loose_new}" /></form>

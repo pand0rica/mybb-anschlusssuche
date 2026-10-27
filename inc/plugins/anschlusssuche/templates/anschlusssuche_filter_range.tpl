@@ -1,0 +1,1 @@
+<input type="number" min="0" class="textbox anschlusssuche-input-number" name="{$name_min}" value="{$value_min}" placeholder="{$lang->anschlusssuche_age_from}" /> &ndash; <input type="number" min="0" class="textbox anschlusssuche-input-number" name="{$name_max}" value="{$value_max}" placeholder="{$lang->anschlusssuche_age_to}" />
