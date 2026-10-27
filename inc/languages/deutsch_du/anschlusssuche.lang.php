@@ -45,11 +45,14 @@ $l['anschlusssuche_links_add'] = '+ Anschluss hinzufügen';
 $l['anschlusssuche_links_name'] = 'Name (Account oder freier Text)';
 $l['anschlusssuche_links_role'] = 'Rolle, z. B. Bruder';
 $l['anschlusssuche_links_count'] = 'Anschluss an {1} Charaktere';
+$l['anschlusssuche_links_count_one'] = 'Anschluss an 1 Charakter';
 
 // Formulare
 $l['anschlusssuche_form_heading'] = 'Angaben zum Gesuch';
 $l['anschlusssuche_please_select'] = 'Bitte auswählen';
 $l['anschlusssuche_error_generic'] = '{1}';
+// PostDataHandler prefixes its error keys with "postdata_"
+$l['postdata_anschlusssuche_error_generic'] = '{1}';
 $l['anschlusssuche_error_required'] = 'Bitte fülle „{1}“ aus.';
 $l['anschlusssuche_error_option'] = 'Bitte wähle bei „{1}“ eine gültige Option.';
 $l['anschlusssuche_error_number'] = '„{1}“ muss eine ganze Zahl sein.';

@@ -45,11 +45,14 @@ $l['anschlusssuche_links_add'] = '+ add connection';
 $l['anschlusssuche_links_name'] = 'Name (account or free text)';
 $l['anschlusssuche_links_role'] = 'Role, e.g. brother';
 $l['anschlusssuche_links_count'] = 'Connected to {1} characters';
+$l['anschlusssuche_links_count_one'] = 'Connected to 1 character';
 
 // Forms
 $l['anschlusssuche_form_heading'] = 'Ad details';
 $l['anschlusssuche_please_select'] = 'Please select';
 $l['anschlusssuche_error_generic'] = '{1}';
+// PostDataHandler prefixes its error keys with "postdata_"
+$l['postdata_anschlusssuche_error_generic'] = '{1}';
 $l['anschlusssuche_error_required'] = 'Please fill in "{1}".';
 $l['anschlusssuche_error_option'] = 'Please choose a valid option for "{1}".';
 $l['anschlusssuche_error_number'] = '"{1}" must be a whole number.';

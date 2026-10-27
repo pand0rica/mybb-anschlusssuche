@@ -163,7 +163,7 @@ class Anschlusssuche_Renderer
             return '';
         }
         return self::render('anschlusssuche_links_count', [
-            'links_label' => htmlspecialchars_uni($lang->sprintf($lang->anschlusssuche_links_count, $n)),
+            'links_label' => htmlspecialchars_uni($n === 1 ? $lang->anschlusssuche_links_count_one : $lang->sprintf($lang->anschlusssuche_links_count, $n)),
         ]);
     }
 
@@ -281,7 +281,11 @@ class Anschlusssuche_Renderer
         if (empty($mybb->user['uid'])) {
             return false;
         }
-        return is_member($mybb->settings['anschlusssuche_loose_groups']);
+        $groups = (string)$mybb->settings['anschlusssuche_loose_groups'];
+        if ($groups === '-1') {
+            return true; // groupselect "all groups"
+        }
+        return $groups !== '' && !empty(is_member($groups));
     }
 
     /* ------------------------------------------------------------------ */

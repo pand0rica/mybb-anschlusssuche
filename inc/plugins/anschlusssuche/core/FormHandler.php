@@ -234,8 +234,10 @@ class Anschlusssuche_FormHandler
             return;
         }
         anschlusssuche_lang();
-        foreach (self::validate_input($type, self::read_input($type)) as $error) {
-            $handler->set_error('anschlusssuche_error_generic', [$error]);
+        $errors = self::validate_input($type, self::read_input($type));
+        if ($errors) {
+            // DataHandler keys errors by code, so all messages go into one entry.
+            $handler->set_error('anschlusssuche_error_generic', [implode('<br />', array_map('htmlspecialchars_uni', $errors))]);
         }
     }
 

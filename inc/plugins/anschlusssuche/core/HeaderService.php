@@ -252,6 +252,15 @@ class Anschlusssuche_HeaderService
         return Anschlusssuche_Renderer::render('anschlusssuche_header', ['header_items' => $html]);
     }
 
+    private static function forum_viewable(int $fid): bool
+    {
+        static $hidden = null;
+        if ($hidden === null) {
+            $hidden = array_flip(array_filter(array_map('intval', explode(',', str_replace("'", '', (string)get_unviewable_forums(true))))));
+        }
+        return !isset($hidden[$fid]);
+    }
+
     private static function render_item(array $item, array $entries, array $threads): string
     {
         $title = '';
@@ -265,7 +274,8 @@ class Anschlusssuche_HeaderService
             }
             $entry = $entries[$item['entry_id']];
             if (!empty($entry['tid'])) {
-                if (!isset($threads[(int)$entry['tid']]) || (int)$threads[(int)$entry['tid']]['visible'] !== 1) {
+                $thread = isset($threads[(int)$entry['tid']]) ? $threads[(int)$entry['tid']] : null;
+                if (!$thread || (int)$thread['visible'] !== 1 || !self::forum_viewable((int)$thread['fid'])) {
                     return '';
                 }
                 $title = (string)$threads[(int)$entry['tid']]['subject'];

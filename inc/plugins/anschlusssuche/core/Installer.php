@@ -53,6 +53,38 @@ class Anschlusssuche_Installer
         $db->delete_query('settings', "name LIKE 'anschlusssuche\\_%'");
         $db->delete_query('settinggroups', "name = 'anschlusssuche'");
         rebuild_settings();
+        self::set_admin_permission(false);
+    }
+
+    /**
+     * ACP-Recht tools/anschlusssuche: beim Aktivieren allen Admins/Gruppen geben, die den
+     * Tools-Bereich nutzen dürfen (vorhandene Einstellungen bleiben unangetastet);
+     * beim Deinstallieren wieder entfernen.
+     */
+    public static function set_admin_permission(bool $grant): void
+    {
+        global $db;
+
+        $query = $db->simple_select('adminoptions', 'uid, permissions', "permissions != ''");
+        while ($row = $db->fetch_array($query)) {
+            $perms = my_unserialize($row['permissions']);
+            if (!is_array($perms)) {
+                continue;
+            }
+            if ($grant) {
+                $tools = isset($perms['tools']) && is_array($perms['tools']) ? $perms['tools'] : [];
+                if (isset($tools['anschlusssuche']) || !in_array('1', array_map('strval', $tools), true)) {
+                    continue; // already decided, or no Tools access at all
+                }
+                $perms['tools']['anschlusssuche'] = 1;
+            } else {
+                if (!isset($perms['tools']['anschlusssuche'])) {
+                    continue;
+                }
+                unset($perms['tools']['anschlusssuche']);
+            }
+            $db->update_query('adminoptions', ['permissions' => $db->escape_string(my_serialize($perms))], 'uid = ' . (int)$row['uid']);
+        }
     }
 
     public static function activate(): void
@@ -64,6 +96,7 @@ class Anschlusssuche_Installer
         self::install_form_markers();
         self::install_usercp_link();
         self::install_default_fields();
+        self::set_admin_permission(true);
     }
 
     public static function deactivate(): void

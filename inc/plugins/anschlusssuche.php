@@ -288,7 +288,12 @@ function anschlusssuche_handle_forumdisplay_start(): void
         return;
     }
     // Runtime-only swap of the row template (same principle as xThreads template prefixes).
-    $templates->cache['forumdisplay_thread'] = $templates->get('anschlusssuche_forumdisplay_thread');
+    // get() fills the cache with the raw, theme-resolved template; copy that raw value
+    // (get() itself returns an escaped string, which would be escaped twice later).
+    $templates->get('anschlusssuche_forumdisplay_thread');
+    if (isset($templates->cache['anschlusssuche_forumdisplay_thread'])) {
+        $templates->cache['forumdisplay_thread'] = $templates->cache['anschlusssuche_forumdisplay_thread'];
+    }
 }
 
 /**
