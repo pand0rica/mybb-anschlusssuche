@@ -21,7 +21,7 @@ nicht angefasst.
 ---
 
 ## Schritt 1 – Grundgerüst & Zugriffsschutz
-- [ ] **Ziel:** Hauptdatei mit `info()`, `IN_MYBB`-Schutz, Autoload der Core-Klassen
+- [x] **Ziel:** Hauptdatei mit `info()`, `IN_MYBB`-Schutz, Autoload der Core-Klassen
       (`require_once` je Datei aus `inc/plugins/anschlusssuche/core/`, Klassen mit Präfix
       `Anschlusssuche_`), Registrierung **aller** Hooks aus `PROJECT_CONTEXT.md` → „Hooks“
       (außer Shop- und Relatives-Provider-Hook) mit leeren Handlern. Handler bleiben dünn und
@@ -31,7 +31,7 @@ nicht angefasst.
 - **Abnahme:** `php -l` auf allen Dateien (7.4 + 8.4); Plugin erscheint in der ACP-Pluginliste.
 
 ## Schritt 2 – Lifecycle: install / is_installed / uninstall
-- [ ] **Ziel:** `Anschlusssuche_Installer`: die 8 Tabellen aus `PROJECT_CONTEXT.md` anlegen/
+- [x] **Ziel:** `Anschlusssuche_Installer`: die 8 Tabellen aus `PROJECT_CONTEXT.md` anlegen/
       droppen, Settinggroup + alle Settings in `install()` (nicht in activate!),
       `is_installed()` über Tabelle `anschlusssuche_entries`. `uninstall()` entfernt Tabellen,
       Settings, Settinggroup, `rebuild_settings()`.
@@ -41,7 +41,7 @@ nicht angefasst.
   (`testing.md` §3).
 
 ## Schritt 3 – activate / deactivate: Templates, Stylesheet, Default-Felder, Settings-Nachrüstung
-- [ ] **Ziel:** `activate()`: Settings idempotent nachrüsten, alle Templates aus
+- [x] **Ziel:** `activate()`: Settings idempotent nachrüsten, alle Templates aus
       `templates/*.tpl` (Liste in `PROJECT_CONTEXT.md` → „Templates“) als sid -1 anlegen,
       Stylesheet `anschlusssuche.css` in alle Themes, JS über `headerinclude`-Variable (kein
       Core-Template-Edit nötig: `$anschlusssuche_headerinclude` an `$headerinclude` anhängen
@@ -62,7 +62,7 @@ nicht angefasst.
   danach 0; Reaktivieren dupliziert keine Default-Felder.
 
 ## Schritt 4 – Repository & Feldtyp-System
-- [ ] **Ziel:**
+- [x] **Ziel:**
       - `Anschlusssuche_Repository`: CRUD für alle Tabellen, Bulk-Loader
         `load_entries_by_tids(array)`, `load_values(array $entry_ids)`,
         `load_links(array $entry_ids)`, `get_forum_map()` (gecacht pro Request),
@@ -77,7 +77,7 @@ nicht angefasst.
   normalize-Ergebnisse, `filter_sql` enthält keine unescaped Werte.
 
 ## Schritt 5 – EntryService: Speichern, Status-Automatik, öffentliche API
-- [ ] **Ziel:** `anschlusssuche_entry_save()` (Signatur siehe `PROJECT_CONTEXT.md` →
+- [x] **Ziel:** `anschlusssuche_entry_save()` (Signatur siehe `PROJECT_CONTEXT.md` →
       „Eigene Hooks / API“) → `EntryService::save()`: validiert über FieldTypes, schreibt
       `entries` + `values` + `links` (Werte/Links eines Eintrags komplett ersetzen),
       berechnet den Gruppen-Status nach der Status-Logik, feuert `anschlusssuche_entry_saved`.
@@ -89,7 +89,7 @@ nicht angefasst.
   `reserved` bleibt bei Slot-Änderung; Speichern zweimal mit gleichen Daten = gleicher Stand.
 
 ## Schritt 6 – Thread erstellen / bearbeiten (ersetzt xThreads-Eingabe)
-- [ ] **Ziel:** Hooks `newthread_start`, `datahandler_post_validate_thread`,
+- [x] **Ziel:** Hooks `newthread_start`, `datahandler_post_validate_thread`,
       `datahandler_post_validate_post` (nur `first_post` beim Edit), `newthread_do_newthread_end`,
       `editpost_action_start`, `editpost_do_editpost_end`. Nur in aktiven Foren vom Typ
       single/group. Kernfelder: Status (single), Belegung gesamt/belegt/„offen“ (group),
@@ -104,7 +104,7 @@ nicht angefasst.
   Archivforum → Status „erledigt“, Löschen → Zeilen weg.
 
 ## Schritt 7 – Threadliste (forumdisplay) + Filterleiste
-- [ ] **Ziel:** Core-Fakt (verifiziert, `forumdisplay.php:1039–1401`): Jede Zeile wird nach
+- [x] **Ziel:** Core-Fakt (verifiziert, `forumdisplay.php:1039–1401`): Jede Zeile wird nach
       dem Hook `forumdisplay_thread_end` per
       `eval("\$threads .= \"".$templates->get("forumdisplay_thread")."\";")` angehängt.
       Deshalb:
@@ -134,7 +134,7 @@ nicht angefasst.
   Parametern; curl-Check (`testing.md` §5).
 
 ## Schritt 8 – Header-Teaser + `header_add`-API
-- [ ] **Ziel:** `HeaderService` nach `PROJECT_CONTEXT.md` → „Header“: feste Einträge im
+- [x] **Ziel:** `HeaderService` nach `PROJECT_CONTEXT.md` → „Header“: feste Einträge im
       Zeitraum, Zufallsauffüllung ohne `ORDER BY RAND()`, Ausgabe `$anschlusssuche_header`
       in `global_intermediate`; Provider-Hook `anschlusssuche_header_collect`.
       `anschlusssuche_header_add()` mit Validierung (Zeitraum, Ziel existiert, source).
@@ -147,7 +147,7 @@ nicht angefasst.
   ein Header-Template setzen und ansehen.
 
 ## Schritt 9 – Lose Gesuche: UserCP, Relatives-Adapter, Block im Unterforum
-- [ ] **Ziel:**
+- [x] **Ziel:**
       - UserCP (`modules/usercp.php`, Menüeintrag `boilerplate.md` §14): Liste der eigenen
         losen Gesuche, Anlegen/Bearbeiten/Löschen (POST + `verify_post_check`, Gruppen- und
         Limit-Prüfung aus Settings), Felder = Kernfelder (Titel, Status, Altersspanne) +
@@ -165,7 +165,7 @@ nicht angefasst.
   bearbeiten → `error_no_permission()`.
 
 ## Schritt 10 – Profil (ersetzt `h4wtweaks_profile_gesuche()`)
-- [ ] **Ziel:** `AccountResolver` (Root über `as_uid`, `field_exists`-Check), `member_profile_end`
+- [x] **Ziel:** `AccountResolver` (Root über `as_uid`, `field_exists`-Check), `member_profile_end`
       setzt `$anschlusssuche_profile`: Abschnitte Einzel / Gruppe / lose (eigene + Relatives
       über `owner_uids`) für alle Accounts des Spielers, optional „erledigt“
       (`profile_show_done`). Nur Threads, die der Betrachter sehen darf. Leerzustand-Text.
@@ -176,7 +176,7 @@ nicht angefasst.
   Account ohne Gesuche zeigt Leertext; ohne Accountswitcher-Spalte kein SQL-Fehler.
 
 ## Schritt 11 – Suchseite `anschluss.php`
-- [ ] **Ziel:** Root-Controller nach `PROJECT_CONTEXT.md` → „Suche“: Typ-Tabs, Kern- und
+- [x] **Ziel:** Root-Controller nach `PROJECT_CONTEXT.md` → „Suche“: Typ-Tabs, Kern- und
       ACP-Feldfilter, Archiv-Checkbox, Pagination (`multipage()`), Gast-Setting,
       Forenrechte, Relatives-Mischung. Breadcrumb, `output_page()`.
 - **Dateien:** `anschluss.php`, `core/SearchService.php`, `templates/anschlusssuche_search*.tpl`
@@ -186,7 +186,7 @@ nicht angefasst.
   jedem Parameter ohne Wirkung; Seite 2 behält Filter.
 
 ## Schritt 12 – Autocomplete Anschlussliste (xmlhttp)
-- [ ] **Ziel:** `xmlhttp`-Handler `action=anschlusssuche_users` (nur eingeloggt, Prefix-Suche
+- [x] **Ziel:** `xmlhttp`-Handler `action=anschlusssuche_users` (nur eingeloggt, Prefix-Suche
       auf `username`, max. 10, JSON), JS in `assets/anschlusssuche.js` für Zeilen
       hinzufügen/entfernen + Vorschläge; ohne JS bleibt das Feld als Name/Rolle-Eingabe nutzbar.
 - **Dateien:** `inc/plugins/anschlusssuche.php`, `assets/anschlusssuche.js`,
@@ -196,7 +196,7 @@ nicht angefasst.
   gewähltem Account setzt `links.uid`.
 
 ## Schritt 13 – ACP-Tools-Modul
-- [ ] **Ziel:** Tabs Foren / Felder (Sub-Tabs je Typ) / Header nach `PROJECT_CONTEXT.md` →
+- [x] **Ziel:** Tabs Foren / Felder (Sub-Tabs je Typ) / Header nach `PROJECT_CONTEXT.md` →
       „ACP“; gemeinsamer Tab-Helper `anschlusssuche_acp_nav_tabs()`; jede Schreibaktion mit
       `verify_post_check`, `log_admin_action`; Feld löschen mit Bestätigung; Optionsumbenennung
       zieht Werte nach; max. ein `age_range`-Feld je Typ.
@@ -207,7 +207,7 @@ nicht angefasst.
   Nutzer übergeben** (`testing.md` §8).
 
 ## Schritt 14 – Sprachdateien (englisch + deutsch_du, Frontend + Admin getrennt)
-- [ ] **Ziel:** alle Keys definieren; Status-Texte, Typnamen, Leerzustände, Fehlermeldungen.
+- [x] **Ziel:** alle Keys definieren; Status-Texte, Typnamen, Leerzustände, Fehlermeldungen.
       Genderneutral, du-Form.
 - **Dateien:** `inc/languages/english/anschlusssuche.lang.php` (+ `admin/`),
   `inc/languages/deutsch_du/anschlusssuche.lang.php` (+ `admin/`)
@@ -215,7 +215,7 @@ nicht angefasst.
 - **Abnahme:** `D:\mybb-plugin-dev-kit\scripts\lang_check.ps1` ohne fehlende Keys.
 
 ## Schritt 15 – Selbsttests finalisieren
-- [ ] **Ziel:** `tests/cli-plugin.php` (Lifecycle) + `tests/cli-selftest.php` (FieldTypes,
+- [x] **Ziel:** `tests/cli-plugin.php` (Lifecycle) + `tests/cli-selftest.php` (FieldTypes,
       Status-Logik, Header-Auswahl, Suche-Altersüberlappung, Adapter mit/ohne Relatives,
       `entry_save` idempotent).
 - **Vorlage:** `testing.md` §3, §4
@@ -232,3 +232,52 @@ nicht angefasst.
   `anschlusssuche_usercp_credits*.tpl`
 - **Abnahme:** lokal Kauf eines gemappten Items → Gutschein; Einlösen → Header-Eintrag
   `source=shop`; Kollision mit `shop_max_concurrent` wird abgewiesen.
+
+---
+
+## Umsetzungsnotizen (Phase 2, 2026-10-27)
+
+Abweichungen vom Plan, bewusst so umgesetzt:
+- **Schritt 1/6:** Zusätzliche Core-Klasse `FormHandler.php` für Formulare, Validierung und
+  Speichern (Thread + lose Gesuche). Die Hauptdatei bleibt dünn.
+- **Schritt 2:** Tabellen nutzen `$db->build_create_table_collation()` statt fest `utf8`. So
+  passt der Zeichensatz zum Board (utf8mb4).
+- **Schritt 3:** `activate()` vergibt das ACP-Recht `tools/anschlusssuche` an alle Admins und
+  Admin-Gruppen, die schon Werkzeuge-Rechte haben. `uninstall()` entfernt es wieder. Ohne diese
+  Vergabe sperrt MyBB das Modul für Admins mit eigenem Rechte-Set.
+- **Schritt 6:**
+  - Validierungsfehler gehen gesammelt in **einen** DataHandler-Fehler, weil MyBB Fehler pro
+    Code überschreibt.
+  - Der Sprachschlüssel lautet `postdata_anschlusssuche_error_generic`, weil der
+    PostDataHandler das Präfix `postdata_` voranstellt.
+- **Schritt 7:**
+  - Der Block für lose Gesuche und die Filterleiste hängen an `forumdisplay_end` (vor
+    `$threadslist`), nicht an `forumdisplay_threadlist`. Der Grund: `forumdisplay_threadlist`
+    feuert, bevor `$threadslist` gebaut wird.
+  - Das Zeilen-Template wird **roh** aus `$templates->cache` kopiert. `get()` liefert einen
+    escapten String, der sonst doppelt escaped würde.
+  - Solange xThreads ein Template-Präfix für ein Forum gesetzt hat (H4W: 47/48), gewinnt das
+    xThreads-Template. Erst Migration 012 entfernt die Präfixe.
+- **Schritt 9:** Die Relatives-Quelle ist hinter `function_exists('relatives_count_persons')`
+  vorbereitet, aber **nicht getestet**. Die API-Erweiterung im Relatives-Repo fehlt noch (siehe
+  TODO). Bis dahin zeigt der Block nur die losen Gesuche aus dem UserCP.
+- **Schritt 12:** Kein eigener `xmlhttp`-Handler. Das Autocomplete nutzt den Core-Endpunkt
+  `xmlhttp.php?action=get_users`, der dieselbe Prefix-Suche bietet.
+- **Profil:** Die Variable `{$anschlusssuche_profile}` muss im Profil-Template platziert werden.
+  Das Plugin editiert kein Profil-Template, bei H4W erledigt das Migration 012.
+
+Getestet lokal (h4w.localhost:8080, PHP 7.4 + 8.4):
+- Lifecycle install/deactivate/activate/uninstall auf beiden Versionen; nach Uninstall sind alle
+  Zähler 0; Reaktivieren dupliziert keine Felder.
+- `tests/cli-selftest.php`: 45 von 45 grün, auf beiden Versionen.
+- Threadliste im Archivforum: Status „erledigt“, Feldzeile und Anschlusszahl.
+- Suchseite mit Altersüberlappung.
+- Neues Thema: Pflicht- und Altersfehler, Speichern, Gruppenstatus-Automatik.
+- Bearbeiten: Felder vorbefüllt, Speichern.
+- Moderation: Verschieben ins Archiv ergibt „erledigt“, Löschen räumt Werte weg.
+- UserCP lose Gesuche: CSRF-Schutz, Validierung, Speichern, XSS escaped.
+- Profil über alle Accounts.
+- Header-Rendering: fest + zufällig.
+- ACP-Seiten und die Speicher-Aktionen für Feld und Header-Eintrag.
+
+**Offen:** manueller Klicktest im ACP (`testing.md` §8) und Schritt 16 (Shop).
