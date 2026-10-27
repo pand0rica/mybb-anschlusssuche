@@ -192,7 +192,7 @@ Icon-Zeile der Felder mit `show_list = 1` (Icon aus `fields.icon`), „Anschluss
   (= Mindestversion mit API-Erweiterung, siehe unten). Fehlt eins davon, werden nur die eigenen
   losen Gesuche gezeigt – kein Fehler. Zugriff **ausschließlich** über `RelativesAdapter` →
   öffentliche Relatives-API; nie `relatives_*`-Tabellen.
-  - **Benötigte API-Erweiterung im Relatives-Repo (Voraussetzung für Schritt 9):**
+  - **Mindestversion Relatives 2.2.0** – diese API-Erweiterung ist dort umgesetzt:
     - `relatives_search_persons()` neue Filter-Keys `limit`, `offset`, `order`
       (`name`|`age`|`newest`), `owner_uids` (int[]), `ids` (int[]).
     - neue Funktion `relatives_count_persons(array $filters): int` (gleiche Filter, ohne

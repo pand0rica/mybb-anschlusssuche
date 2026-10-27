@@ -20,15 +20,17 @@ Tabellen“ ist ersetzt.
   - Altersspanne mit Anzeigetext
   - Relatives-API erweitern
   - Shop-Ablauf mit Gutschein und Einlösen
-- [ ] **Relatives-API erweitern** (Voraussetzung für Plan-Schritt 9), im Relatives-Repo als
-      eigener kleiner Plan/Release:
+- [x] **Relatives-API erweitern** (Voraussetzung für Plan-Schritt 9), umgesetzt 2026-10-27 im
+      Relatives-Repo (Version 2.2.0):
   - `limit`/`offset`/`order`
   - Filter `owner_uids` und `ids`
   - `relatives_count_persons()`
   - `relationship_description` je Besitzer in der Rückgabe
   
   Details: `PROJECT_CONTEXT.md` → „Abhängigkeiten“.
-- [ ] Phase 2: Umsetzung nach `IMPLEMENTATION_PLAN.md` (Startprompt: `start_prompt.md`)
+- [x] Phase 2: Umsetzung nach `IMPLEMENTATION_PLAN.md`, Schritte 1–15 (2026-10-27)
+- [ ] Manueller ACP-Klicktest
+- [ ] Phase 3: Review
 - [ ] Migration 012 im Aufräum-Repo bauen, Grobbeschreibung in
       `F:\RPG\H4W Administratives\mybb aufräumen\docs\migration-012-gesuche.md`. Sie übernimmt
       Foren, Felder, Werte und Header-Settings, räumt xThreads-Felder und Templates auf,

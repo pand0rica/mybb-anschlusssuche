@@ -258,9 +258,11 @@ Abweichungen vom Plan, bewusst so umgesetzt:
     escapten String, der sonst doppelt escaped würde.
   - Solange xThreads ein Template-Präfix für ein Forum gesetzt hat (H4W: 47/48), gewinnt das
     xThreads-Template. Erst Migration 012 entfernt die Präfixe.
-- **Schritt 9:** Die Relatives-Quelle ist hinter `function_exists('relatives_count_persons')`
-  vorbereitet, aber **nicht getestet**. Die API-Erweiterung im Relatives-Repo fehlt noch (siehe
-  TODO). Bis dahin zeigt der Block nur die losen Gesuche aus dem UserCP.
+- **Schritt 9:** Die Relatives-Quelle setzt Relatives 2.2.0 mit `relatives_count_persons()`
+  voraus; die API-Erweiterung ist im Relatives-Repo umgesetzt (2026-10-27). Lokal getestet:
+  - Block mit 35 Stammbaum-Personen + UserCP-Gesuchen, Seitenwechsel
+  - Suche (Alter, Text; ACP-Feldfilter schließen Relatives-Personen aus)
+  - Profil über alle Accounts, fester Header-Eintrag mit Relatives-Person
 - **Schritt 12:** Kein eigener `xmlhttp`-Handler. Das Autocomplete nutzt den Core-Endpunkt
   `xmlhttp.php?action=get_users`, der dieselbe Prefix-Suche bietet.
 - **Profil:** Die Variable `{$anschlusssuche_profile}` muss im Profil-Template platziert werden.
@@ -269,7 +271,7 @@ Abweichungen vom Plan, bewusst so umgesetzt:
 Getestet lokal (h4w.localhost:8080, PHP 7.4 + 8.4):
 - Lifecycle install/deactivate/activate/uninstall auf beiden Versionen; nach Uninstall sind alle
   Zähler 0; Reaktivieren dupliziert keine Felder.
-- `tests/cli-selftest.php`: 45 von 45 grün, auf beiden Versionen.
+- `tests/cli-selftest.php`: 53 von 53 grün auf beiden Versionen (inkl. Relatives-Adapter).
 - Threadliste im Archivforum: Status „erledigt“, Feldzeile und Anschlusszahl.
 - Suchseite mit Altersüberlappung.
 - Neues Thema: Pflicht- und Altersfehler, Speichern, Gruppenstatus-Automatik.

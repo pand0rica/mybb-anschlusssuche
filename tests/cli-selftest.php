@@ -135,9 +135,40 @@ $ids = array_map(function ($r) { return (int)$r['id']; }, $active);
 check('header active now', true, in_array($hid, $ids, true));
 $ids = array_map(function ($r) { return (int)$r['id']; }, Anschlusssuche_HeaderService::active_fixed($h_now + 3600));
 check('header end exclusive', false, in_array($hid, $ids, true));
-$mybb->settings['anschlusssuche_header_count'] = 1;
+// other fixed entries may exist locally: count them in
+$fixed_now = count(Anschlusssuche_HeaderService::active_fixed($h_now));
+$mybb->settings['anschlusssuche_header_count'] = $fixed_now;
 $picked = Anschlusssuche_HeaderService::pick($h_now);
-check('header fixed first + capped', [1, 'entry', $id], [count($picked), $picked[0]['kind'] ?? '', $picked[0]['entry_id'] ?? 0]);
+$kinds = array_column($picked, 'entry_id');
+check('header fixed included + capped', [$fixed_now, true], [count($picked), in_array($id, $kinds, true)]);
+$mybb->settings['anschlusssuche_header_count'] = max(0, $fixed_now - 1);
+check('header cap below fixed count', max(0, $fixed_now - 1), count(Anschlusssuche_HeaderService::pick($h_now)));
+
+echo "Relatives adapter\n";
+if (file_exists(MYBB_ROOT . 'inc/plugins/relatives.php')) {
+    require_once MYBB_ROOT . 'inc/plugins/relatives.php';
+}
+if (Anschlusssuche_RelativesAdapter::available()) {
+    $total = Anschlusssuche_RelativesAdapter::count([]);
+    $page = Anschlusssuche_RelativesAdapter::search(['limit' => 5, 'offset' => 0]);
+    check('relatives count > 0', true, $total > 0);
+    check('relatives page size', min(5, $total), count($page));
+    check('relatives mapped as loose', ['relatives', 'loose', 'free'], [$page[0]['source'], $page[0]['type'], $page[0]['status']]);
+    $one = Anschlusssuche_RelativesAdapter::get((int)$page[0]['person_id']);
+    check('relatives get by id', (int)$page[0]['person_id'], $one ? (int)$one['person_id'] : 0);
+    if (!empty($page[0]['owner_uids'])) {
+        $own = Anschlusssuche_RelativesAdapter::count(['owner_uids' => $page[0]['owner_uids']]);
+        check('relatives owner filter', true, $own >= 1 && $own <= $total);
+    }
+    check('relatives safe_url rejects javascript', '', Anschlusssuche_RelativesAdapter::safe_url('javascript:alert(1)'));
+    $rid = anschlusssuche_header_add(['relatives_person_id' => (int)$page[0]['person_id'], 'start_at' => $h_now - 10, 'end_at' => $h_now + 60]);
+    $mybb->settings['anschlusssuche_header_count'] = count(Anschlusssuche_HeaderService::active_fixed($h_now));
+    $persons = array_column(Anschlusssuche_HeaderService::pick($h_now), 'person_id');
+    check('header fixed relatives person', true, in_array((int)$page[0]['person_id'], $persons, true));
+    Anschlusssuche_HeaderService::delete($rid);
+} else {
+    echo "  skip (Relatives with relatives_count_persons() not active)\n";
+}
 
 echo "Cleanup\n";
 Anschlusssuche_Repository::delete_entry($id);
