@@ -47,6 +47,8 @@ if (isset($plugins) && is_object($plugins)) {
         $plugins->add_hook('pre_output_page', 'anschlusssuche_handle_pre_output');
 
         $plugins->add_hook('member_profile_end', 'anschlusssuche_handle_profile');
+        // Loose ads of the displayed character go into the Relatives "wanted" box
+        $plugins->add_hook('relatives_profile_wanted_cards', 'anschlusssuche_handle_relatives_wanted_cards');
 
         $plugins->add_hook('usercp_menu', 'anschlusssuche_handle_usercp_menu', 40);
         $plugins->add_hook('usercp_start', 'anschlusssuche_handle_usercp');
@@ -388,6 +390,27 @@ function anschlusssuche_handle_profile(): void
         return;
     }
     $anschlusssuche_profile = Anschlusssuche_Renderer::profile((int)$memprofile['uid']);
+}
+
+/**
+ * Appends the open loose ads of exactly this account (not the whole account group) to the
+ * Relatives profile box. $args: uid, cards (escaped HTML), count.
+ */
+function anschlusssuche_handle_relatives_wanted_cards(&$args): void
+{
+    if (!is_array($args) || empty($args['uid']) || !anschlusssuche_enabled()) {
+        return;
+    }
+    anschlusssuche_lang();
+
+    foreach (Anschlusssuche_Repository::entries_for_uids([(int)$args['uid']]) as $entry) {
+        if ($entry['source'] !== 'loose' || Anschlusssuche_EntryService::effective_status($entry) === 'done') {
+            continue;
+        }
+        $args['cards'] .= '<div class="relatives_profile_wanted_card anschlusssuche-profile-loose">'
+            . Anschlusssuche_Renderer::card($entry) . '</div>';
+        $args['count']++;
+    }
 }
 
 function anschlusssuche_handle_usercp_menu(): void

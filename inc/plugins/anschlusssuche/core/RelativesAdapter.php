@@ -115,7 +115,17 @@ class Anschlusssuche_RelativesAdapter
             return null;
         }
         $owners = isset($p['owners']) && is_array($p['owners']) ? array_values($p['owners']) : [];
-        $first = $owners ? (array)$owners[0] : [];
+        // Person in several trees: the closest relative is the one searching (stable for ties)
+        $order = array_keys($owners);
+        usort($order, static function (int $a, int $b) use ($owners): int {
+            $ca = isset($owners[$a]['closeness']) ? (int)$owners[$a]['closeness'] : PHP_INT_MAX;
+            $cb = isset($owners[$b]['closeness']) ? (int)$owners[$b]['closeness'] : PHP_INT_MAX;
+            return $ca <=> $cb ?: $a <=> $b;
+        });
+        $owners = array_map(static function (int $i) use ($owners): array {
+            return (array)$owners[$i];
+        }, $order);
+        $first = $owners ? $owners[0] : [];
 
         $description = '';
         if (!empty($first['relationship_description'])) {

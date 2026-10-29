@@ -9,7 +9,7 @@ $l['anschlusssuche_disabled'] = 'Diese Funktion ist zurzeit deaktiviert.';
 $l['anschlusssuche_type_all'] = 'Alle';
 $l['anschlusssuche_type_single'] = 'Einzelgesuche';
 $l['anschlusssuche_type_group'] = 'Gruppengesuche';
-$l['anschlusssuche_type_loose'] = 'Lose Gesuche';
+$l['anschlusssuche_type_loose'] = 'Anschluss-Angebote';
 
 // Status
 $l['anschlusssuche_status_free'] = 'frei';
@@ -65,27 +65,27 @@ $l['anschlusssuche_error_slots'] = 'Es sind mehr Plätze belegt als insgesamt ge
 $l['anschlusssuche_filterbar_title'] = 'Gesuche durchsuchen';
 $l['anschlusssuche_filter_any'] = 'egal';
 $l['anschlusssuche_filter_submit'] = 'Suchen';
-$l['anschlusssuche_loose_block_title'] = 'Lose Gesuche';
-$l['anschlusssuche_loose_empty'] = 'Zurzeit gibt es keine losen Gesuche.';
-$l['anschlusssuche_loose_new'] = 'Neues loses Gesuch';
-$l['anschlusssuche_loose_edit'] = 'Loses Gesuch bearbeiten';
+$l['anschlusssuche_loose_block_title'] = 'Anschluss-Angebote';
+$l['anschlusssuche_loose_empty'] = 'Zurzeit gibt es keine Anschluss-Angebote.';
+$l['anschlusssuche_loose_new'] = 'Neues Anschluss-Angebot';
+$l['anschlusssuche_loose_edit'] = 'Anschluss-Angebot bearbeiten';
 $l['anschlusssuche_source_relatives'] = 'aus dem Stammbaum';
 
 // Profil
 $l['anschlusssuche_profile_section_single'] = 'Einzelgesuche';
 $l['anschlusssuche_profile_section_group'] = 'Gruppengesuche';
-$l['anschlusssuche_profile_section_loose'] = 'Lose Gesuche';
+$l['anschlusssuche_profile_section_loose'] = 'Anschluss-Angebote';
 $l['anschlusssuche_profile_section_done'] = 'Erledigte Gesuche';
 $l['anschlusssuche_profile_empty'] = 'Diese:r Spieler:in hat aktuell keine Gesuche.';
 
 // UserCP
-$l['anschlusssuche_usercp_nav'] = 'Lose Gesuche';
-$l['anschlusssuche_usercp_title'] = 'Meine losen Gesuche';
-$l['anschlusssuche_usercp_intro'] = 'Lose Gesuche sind gesuchte Charaktere ohne eigenen Thread. Sie erscheinen im Forum für lose Gesuche, in der Suche und in deinem Profil.';
+$l['anschlusssuche_usercp_nav'] = 'Anschluss-Angebote';
+$l['anschlusssuche_usercp_title'] = 'Meine Anschluss-Angebote';
+$l['anschlusssuche_usercp_intro'] = 'Anschluss-Angebote sind gesuchte Charaktere ohne eigenen Thread. Sie erscheinen im Forum „Anschluss-Angebote“, in der Suche und im Profil des Charakters, mit dem du sie angelegt hast.';
 $l['anschlusssuche_usercp_updated'] = 'Letzte Änderung';
 $l['anschlusssuche_usercp_actions'] = 'Aktionen';
-$l['anschlusssuche_usercp_empty'] = 'Du hast noch keine losen Gesuche angelegt.';
-$l['anschlusssuche_usercp_limit'] = 'Du kannst pro Account bis zu {1} lose Gesuche anlegen.';
+$l['anschlusssuche_usercp_empty'] = 'Du hast noch keine Anschluss-Angebote angelegt.';
+$l['anschlusssuche_usercp_limit'] = 'Du kannst pro Account bis zu {1} Anschluss-Angebote anlegen.';
 $l['anschlusssuche_edit'] = 'Bearbeiten';
 $l['anschlusssuche_delete'] = 'Löschen';
 $l['anschlusssuche_delete_confirm'] = 'Willst du dieses Gesuch wirklich löschen?';

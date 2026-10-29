@@ -31,6 +31,10 @@ management for wanted characters.
 - Profile block `{$anschlusssuche_profile}` with the ads of all accounts of a player
   (Enhanced Account Switcher aware); persons from *Relatives* can be hidden there with the setting
   *Hide Relatives persons in profile* to avoid showing them twice next to the Relatives wanted box.
+- The open loose ads of a character are appended to the Relatives wanted box in its profile
+  (hook `relatives_profile_wanted_cards`). A Relatives person in several trees is shown with the
+  closest relative as the searching character (uses `closeness` from the Relatives search API).
+- German wording: loose ads are called *Anschluss-Angebote*.
 - Header teaser `{$anschlusssuche_header}` with fixed, time-limited entries (managed in the ACP)
   and random ads from selected forums.
 - Search page `anschluss.php` over all ad types with tabs, status, age overlap, text and field
