@@ -112,6 +112,12 @@ in the profile. Who may create them and how many per account is set in the setti
 
 With *Relatives* 2.2.0+ installed, every person marked as wanted there is shown as a loose ad as
 well (name, age, gender, relation, description, link). Those are edited in *Relatives*, not here.
+If such a person appears in the trees of several characters, the **closest relative** is shown as
+the searching character (parents/children before partners, siblings, grandparents, aunts/uncles,
+cousins, in-laws, ex-partners, distant relatives); relation and description come from that
+character's entry.
+
+In the German language files loose ads are called **Anschluss-Angebote**.
 
 So that the loose-ads forum does not look empty, the forum list (index and sub-forum lists)
 counts all loose ads in its *Threads* and *Posts* columns and shows the newest loose ad as
@@ -126,6 +132,9 @@ Enhanced Account Switcher of **all accounts of the same player**, also when view
 account. Finished ads can be shown as an extra section (setting). Persons from *Relatives* are
 listed under loose ads unless *Hide Relatives persons in profile* is set – useful when the
 *Relatives* wanted box already appears in the same profile.
+
+With *Relatives* installed, the open loose ads of exactly the displayed account are also added to
+the Relatives wanted box (`{$relatives_wanted_box}`) of that profile, next to its wanted relatives.
 
 ### Header teaser
 
