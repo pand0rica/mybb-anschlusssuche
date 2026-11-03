@@ -50,8 +50,9 @@ management for wanted characters.
   round trips).
 
 ### Security (review)
-- The ACP module checks the return value of `verify_post_check()`; in the ACP the function
-  does not abort on its own.
+- ACP CSRF protection uses MyBB's native mechanism (dev kit `debugging.md` #23): write
+  handlers only act on POST and `admin/index.php` validates the `my_post_key` itself –
+  no own key check or helper.
 
 ### Changed (review)
 - German empty-profile text no longer uses the colon gender form (“Diese:r Spieler:in”);
