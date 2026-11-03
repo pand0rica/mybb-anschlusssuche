@@ -1,0 +1,99 @@
+[size=x-large][b]Anschluss-Suchmaschine[/b][/size]
+[i]Version 1.0.0[/i] – Alle Gesuche deines RPG-Forums mit festen Feldern, durchsuchbar, im Profil und im Header – statt verstreuter xThreads-Felder und PHP-Templates.
+
+[size=large][b]Worum geht's?[/b][/size]
+
+Gesuche sind in Charakterforen das Herzstück für neue Mitglieder – aber oft schwer zu finden: Sie liegen in mehreren Foren, Status und Alter stehen irgendwo im Text, und wer eine Schwester Mitte 20 sucht, liest sich durch alles durch. Die Anschluss-Suchmaschine gibt jedem Gesuch strukturierte Felder (Status, Alter, Geschlecht, Beziehung, Verbindungen …), zeigt sie in der Themenliste, im Profil und im Header und macht alles über eine Suchseite filterbar. Dazu kommen Anschluss-Angebote ohne eigenes Thema – direkt im Benutzer-CP oder aus dem Relatives-Plugin.
+
+[size=large][b]Highlights[/b][/size]
+
+[list]
+[*] Einzel-, Gruppen- und lose Gesuche mit frei definierbaren Feldern
+[*] Suchseite mit Filtern nach Status, Alter und allen filterbaren Feldern
+[*] Status-Abzeichen und Infozeile direkt in der Themenliste
+[*] Gesuche-Block im Profil – mit dem Account Switcher für alle Accounts einer Person
+[*] Header-Teaser mit festen und zufälligen Gesuchen
+[/list]
+
+[size=large][b]Was das Plugin alles kann[/b][/size]
+
+[b]Für Mitglieder[/b]
+[list]
+[*][b]Gesuch schreiben[/b] – Beim neuen Thema in einem Gesuche-Forum erscheint der Block „Gesuchsdetails": Status (frei, reserviert, vergeben), bei Gruppengesuchen die Plätze (gefunden/gesucht, auch offen), dazu alle Felder des Typs. Gruppengesuche springen automatisch auf „vergeben", sobald alle Plätze voll sind. Bearbeitet wird über den ersten Beitrag. [i](Neues Thema / Beitrag bearbeiten)[/i]
+[*][b]Anschluss-Angebote[/b] – Lose Gesuche ohne eigenes Thema mit Titel, Status, Alter und Feldern; sie erscheinen als Karten im Angebote-Forum, in der Suche und im Profil. [i](Benutzer-CP → Anschluss-Angebote)[/i]
+[*][b]Suchseite[/b] – Tabs für alle, Einzel-, Gruppen- und lose Gesuche; Suche nach Text, Status, Altersspanne (überlappend) und allen filterbaren Feldern, auf Wunsch inklusive erledigter Gesuche. Die Forenrechte werden beachtet. [i](anschluss.php)[/i]
+[*][b]Themenliste[/b] – Jedes Gesuch zeigt ein Status-Abzeichen ([frei], [reserviert], [vergeben], [erledigt], bei Gruppen [1/3]) und eine Zeile mit den gewählten Feldern; eine optionale Filterleiste führt direkt zur Suche. [i](Gesuche-Foren)[/i]
+[*][b]Profil[/b] – Alle Gesuche und Angebote der Person, mit dem Enhanced Account Switcher über alle Accounts hinweg, optional auch erledigte. [i](Profil)[/i]
+[*][b]Header-Teaser[/b] – Eine einstellbare Anzahl Gesuche: erst die fest eingeplanten, dann zufällige aus ausgewählten Foren. [i](Header)[/i]
+[/list]
+
+[b]Für Administratoren[/b]
+[list]
+[*][b]Foren zuordnen[/b] – Pro Forum ein Gesuchstyp: Einzel, Gruppe, lose (Karten über der Themenliste) oder Archiv (Gesuche gelten als erledigt), optional mit Filterleiste. [i](ACP → Werkzeuge → Anschluss-Suchmaschine → Foren)[/i]
+[*][b]Felder je Typ[/b] – Text, mehrzeilig, Zahl, Auswahl, Radio, Checkboxen, Altersspanne und Verbindungen (Name + Rolle, auf Wunsch mit Account verknüpft). Je Feld Icon, Pflichtfeld, Reihenfolge, Anzeige in Themenliste/Profil/Header, filterbar, aktiv. Beim Umbenennen einer Option werden gespeicherte Werte mitgezogen. [i](ACP → Anschluss-Suchmaschine → Felder)[/i]
+[*][b]Feste Header-Einträge[/b] – Gesuch per Themen- oder Angebots-ID für einen Zeitraum fest im Header platzieren, mit Notiz und Verlauf. [i](ACP → Anschluss-Suchmaschine → Header-Einträge)[/i]
+[/list]
+
+[b]Läuft automatisch[/b]
+[list]
+[*][b]Standardfelder[/b] – Bei der ersten Aktivierung legt das Plugin für jeden Gesuchstyp einen allgemeinen Feldsatz an.
+[*][b]Belebtes Angebote-Forum[/b] – In der Forenübersicht zählen die Anschluss-Angebote als Themen und Beiträge, und das neueste Angebot erscheint als letzter Beitrag.
+[/list]
+
+[b]Zusammenspiel mit anderen Plugins[/b]
+[list]
+[*][b]Relatives & Family Tree (ab 2.2.0)[/b] – Als gesucht markierte Personen erscheinen als Anschluss-Angebote, bei mehreren Bäumen mit dem nächsten Verwandten. Offene Angebote ergänzen die Gesucht-Box im Profil.
+[*][b]Enhanced Account Switcher[/b] – Das Profil zeigt die Gesuche aller Accounts einer Person.
+[/list]
+
+[size=large][b]So sieht's aus[/b][/size]
+
+[i]Screenshot folgt[/i] – Suchseite mit Filtern
+[i]Screenshot folgt[/i] – Themenliste mit Status-Abzeichen
+[i]Screenshot folgt[/i] – Gesuchsdetails beim neuen Thema
+[i]Screenshot folgt[/i] – Anschluss-Angebote als Karten
+[i]Screenshot folgt[/i] – Foren- und Feldverwaltung im ACP
+
+[size=large][b]Einstellungen[/b][/size]
+
+[list]
+[*][b]Plugin aktivieren[/b] – Hauptschalter für alle Funktionen im Forum.
+[*][b]Suche für Gäste[/b], [b]Treffer pro Seite[/b], [b]Angebote pro Seite[/b]
+[*][b]Gruppen für Anschluss-Angebote[/b] und [b]max. Angebote pro Account[/b] (0 = unbegrenzt)
+[*][b]Relatives einbeziehen[/b] und [b]Geschlechter-Zuordnung[/b] für Relatives
+[*][b]Im Profil anzeigen[/b], [b]erledigte Gesuche im Profil[/b], [b]Relatives-Personen im Profil ausblenden[/b]
+[*][b]Header-Teaser[/b], [b]Anzahl[/b], [b]Quell-Foren[/b], [b]lose Gesuche einbeziehen[/b], [b]nur offene Gesuche[/b]
+[/list]
+
+[size=large][b]Voraussetzungen[/b][/size]
+
+[list]
+[*] MyBB 1.8.x
+[*] PHP 7.4 oder 8.x, MySQL 5.7+ bzw. MariaDB 10.2+
+[*] Optional: Relatives & Family Tree ab 2.2.0, Enhanced Account Switcher, Font Awesome im Theme (für die Standard-Icons)
+[/list]
+
+[size=large][b]Installation[/b][/size]
+
+[list=1]
+[*] Dateien in das MyBB-Stammverzeichnis kopieren ([i]anschluss.php[/i] neben die [i]index.php[/i], [i]admin[/i], [i]inc[/i] und [i]jscripts[/i] zusammenführen)
+[*] ACP → Konfiguration → Plugins → Anschluss-Suchmaschine → Installieren & aktivieren
+[*] ACP → Konfiguration → Einstellungen → Anschluss-Suchmaschine → Einstellungen prüfen
+[*] ACP → Werkzeuge → Anschluss-Suchmaschine → Foren zuordnen und Felder anpassen
+[*] [i]{$anschlusssuche_profile}[/i] ins Profil-Template und [i]{$anschlusssuche_header}[/i] in den Header setzen
+[/list]
+
+[size=large][b]Grenzen & Ausblick[/b][/size]
+
+Die Themenliste lässt sich nicht direkt filtern, weil MyBB dafür keinen passenden Hook bietet – die Filterleiste führt deshalb auf die Suchseite. Eine Anbindung an den NewPoints-Shop für gekaufte Header-Plätze ist vorbereitet, aber noch nicht aktiv.
+
+[size=large][b]Download & Quellcode[/b][/size]
+
+&raquo; [url=https://github.com/pand0rica/mybb-anschlusssuche]GitHub: pand0rica/mybb-anschlusssuche[/url] – Änderungen im [url=https://github.com/pand0rica/mybb-anschlusssuche/blob/main/CHANGELOG.md]Changelog[/url], Lizenz GPL-3.0
+
+[size=large][b]Unterstützung[/b][/size]
+
+<i class="cp cp-tea"></i> Wenn dir das Plugin gefällt, kannst du mir gerne einen Tee spendieren: [url=https://ko-fi.com/pand0rica]ko-fi.com/pand0rica[/url]
+
+[size=small]Fragen, Bugs oder Feature-Wünsche gerne als GitHub Issue melden oder hier im Thread.
+Ich freue mich, wenn ihr mir den Link dalasst, wo das Plugin verwendet wird.[/size]
