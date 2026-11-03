@@ -11,8 +11,10 @@ $lang->load('anschlusssuche');
 
 $page->add_breadcrumb_item($lang->anschlusssuche, 'index.php?module=tools-anschlusssuche');
 
-if ($mybb->request_method === 'post') {
-    verify_post_check($mybb->get_input('my_post_key'));
+// Im ACP bricht verify_post_check() nicht ab – Rückgabewert prüfen (debugging.md #23)
+if ($mybb->request_method === 'post' && !verify_post_check($mybb->get_input('my_post_key'), true)) {
+    flash_message($lang->invalid_post_verify_key2, 'error');
+    admin_redirect('index.php?module=tools-anschlusssuche');
 }
 
 if (!function_exists('anschlusssuche_is_installed') || !anschlusssuche_is_installed()) {

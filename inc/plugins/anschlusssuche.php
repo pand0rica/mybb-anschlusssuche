@@ -76,7 +76,7 @@ function anschlusssuche_info(): array
     return [
         'name'          => 'Anschluss-Suchmaschine',
         'description'   => 'Central management for wanted-character ads: single, group and loose ads with configurable fields, thread list, profile overview, header teaser and search.',
-        'website'       => 'https://github.com/pand0rica/anschlusssuche',
+        'website'       => 'https://github.com/pand0rica/mybb-anschlusssuche',
         'author'        => 'pand0rica',
         'authorsite'    => 'https://github.com/pand0rica',
         'version'       => '1.0.0',

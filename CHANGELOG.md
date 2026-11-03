@@ -49,6 +49,15 @@ management for wanted characters.
 - CLI tests `tests/cli-plugin.php` (lifecycle) and `tests/cli-selftest.php` (logic and DB
   round trips).
 
+### Security (review)
+- The ACP module checks the return value of `verify_post_check()`; in the ACP the function
+  does not abort on its own.
+
+### Changed (review)
+- German empty-profile text no longer uses the colon gender form (“Diese:r Spieler:in”);
+  it now reads “Für diesen Account gibt es aktuell keine Gesuche.”
+- Plugin website points to `pand0rica/mybb-anschlusssuche`.
+
 ### Fixed (during development, before release)
 - The thread-list row template was escaped twice when it replaced `forumdisplay_thread`.
 - Validation errors in the new-thread form showed the language key instead of the message, and

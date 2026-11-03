@@ -76,7 +76,7 @@ $l['anschlusssuche_profile_section_single'] = 'Einzelgesuche';
 $l['anschlusssuche_profile_section_group'] = 'Gruppengesuche';
 $l['anschlusssuche_profile_section_loose'] = 'Anschluss-Angebote';
 $l['anschlusssuche_profile_section_done'] = 'Erledigte Gesuche';
-$l['anschlusssuche_profile_empty'] = 'Diese:r Spieler:in hat aktuell keine Gesuche.';
+$l['anschlusssuche_profile_empty'] = 'Für diesen Account gibt es aktuell keine Gesuche.';
 
 // UserCP
 $l['anschlusssuche_usercp_nav'] = 'Anschluss-Angebote';
