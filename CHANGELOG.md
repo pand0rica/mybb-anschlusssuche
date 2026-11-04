@@ -67,3 +67,7 @@ management for wanted characters.
   (wrong return type).
 - Editing a group ad inside an archive forum of type *single* would have converted it into a
   single ad; the stored type now always wins.
+
+### Fixed
+- Default fields are created in the ACP language: titles and options of the five default fields (age, gender, relation, other, connections) and the default of `anschlusssuche_relatives_gender_map` come from the admin language file (`anschlusssuche_default_*`, English fallback). Previously a German forum got “Age”, “Gender”, “male/female …” and had to rename everything by hand; the gender mapping uses the same words as the gender options so filters keep matching. Only affects new installations.
+
