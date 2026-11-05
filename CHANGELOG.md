@@ -10,6 +10,9 @@ First public release. Replaces the unfinished `anschluss.php` prototype (which o
 legacy *relatives* table and was limited to a single hard-coded user) with a complete ad
 management for wanted characters.
 
+### Fixed
+- **UserCP menu icon.** The row used a tiled, fixed-colour background image, so the icon repeated and was unreadable on dark themes. It is now an inline SVG that takes the link colour (`currentColor`); rows baked by earlier versions are removed by href and class.
+
 ### Added
 - Ad types **single**, **group** and **loose**; any number of forums can be assigned to a type in
   the ACP, optionally flagged as **archive** (ads there count as finished).

@@ -439,7 +439,7 @@ class Anschlusssuche_Installer
 
     public static function usercp_row(): string
     {
-        return '<tr><td class="trow1 smalltext"><a href="usercp.php?action=anschlusssuche_loose" class="usercp_nav_item usercp_nav_anschlusssuche" style="background-image: url(\'data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%2216%22 height=%2216%22%3E%3Ccircle cx=%226.5%22 cy=%226.5%22 r=%224.5%22 fill=%22none%22 stroke=%22%23555%22 stroke-width=%222%22/%3E%3Cpath d=%22M10 10l4 4%22 stroke=%22%23555%22 stroke-width=%222%22/%3E%3C/svg%3E\');">{$lang->anschlusssuche_usercp_nav}</a></td></tr>';
+        return '<tr><td class="trow1 smalltext"><a href="usercp.php?action=anschlusssuche_loose" class="usercp_nav_item usercp_nav_anschlusssuche" style="padding-left: 0;"><svg class="usercp_nav_icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" aria-hidden="true" style="vertical-align: -3px; margin-right: 6px;"><circle cx="6.5" cy="6.5" r="4.5" stroke-width="2"/><path d="M10 10l4 4" stroke-width="2"/></svg>{$lang->anschlusssuche_usercp_nav}</a></td></tr>';
     }
 
     public static function install_usercp_link(): void
@@ -453,7 +453,13 @@ class Anschlusssuche_Installer
     public static function remove_usercp_link(): void
     {
         require_once MYBB_ROOT . 'inc/adminfunctions_templates.php';
-        find_replace_templatesets('usercp_nav_misc', '#' . preg_quote(self::usercp_row(), '#') . '#i', '', 0);
+        // Match by href + class instead of the exact row, so rows baked by older versions are removed as well.
+        find_replace_templatesets(
+            'usercp_nav_misc',
+            '#<tr><td[^>]*><a href="usercp\.php\?action=anschlusssuche_loose" class="usercp_nav_item usercp_nav_anschlusssuche"[^>]*>.*?</a></td></tr>#i',
+            '',
+            0
+        );
     }
 
     /* ------------------------------------------------------------------ */
