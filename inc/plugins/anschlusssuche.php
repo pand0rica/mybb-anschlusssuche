@@ -50,7 +50,8 @@ if (isset($plugins) && is_object($plugins)) {
         // Loose ads of the displayed character go into the Relatives "wanted" box
         $plugins->add_hook('relatives_profile_wanted_cards', 'anschlusssuche_handle_relatives_wanted_cards');
 
-        $plugins->add_hook('usercp_menu', 'anschlusssuche_handle_usercp_menu', 40);
+        // h4w: priority below the RPG menu (usercp_menu_rpg, 25), which evaluates {$lang->anschlusssuche_usercp_nav}
+        $plugins->add_hook('usercp_menu', 'anschlusssuche_handle_usercp_menu', 20);
         $plugins->add_hook('usercp_start', 'anschlusssuche_handle_usercp');
     }
 

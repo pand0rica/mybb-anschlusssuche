@@ -444,11 +444,10 @@ class Anschlusssuche_Installer
 
     public static function install_usercp_link(): void
     {
-        require_once MYBB_ROOT . 'inc/adminfunctions_templates.php';
+        // h4w: the menu row lives in the RPG category templates (usercp_nav_rpg_*), not in usercp_nav_misc.
+        // Only clean up rows baked into usercp_nav_misc by earlier versions.
         self::remove_usercp_link();
-        $anchor = self::usercp_anchor();
-        find_replace_templatesets('usercp_nav_misc', '#' . preg_quote($anchor, '#') . '#i', $anchor . self::usercp_row());
-    }
+}
 
     public static function remove_usercp_link(): void
     {
