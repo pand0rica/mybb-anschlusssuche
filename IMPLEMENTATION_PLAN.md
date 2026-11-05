@@ -1,6 +1,6 @@
 # Anschluss-Suchmaschine – Implementation Plan
 
-**Umsetzung:** folge `D:\mybb-plugin-dev-kit\workflows\2-implement.md`. Schritte der Reihe
+**Umsetzung:** folge `<dev-kit>/workflows/2-implement.md`. Schritte der Reihe
 nach. Bei Unklarheit gezielt nachfragen, aber nicht umplanen. Schritt nach Erledigung auf
 `- [x]` setzen. Alle Details (Tabellen, Hooks, Settings, Status-Logik, Feldtypen) stehen in
 `PROJECT_CONTEXT.md` – dieser Plan verweist darauf statt sie zu wiederholen.
@@ -15,7 +15,7 @@ nach. Bei Unklarheit gezielt nachfragen, aber nicht umplanen. Schritt nach Erled
   öffentlichen Funktionen aus Schritt 4/5 müssen aber migrationstauglich sein.
 
 **Testumgebung:** lokales Forum `http://h4w.localhost:8080` (MySQL 3307, PHP 7.4 + 8.4, siehe
-`F:\RPG\H4W Administratives\mybb aufräumen\docs\LOCAL_ENV.md`). Live-Forum und Live-DB werden
+`<aufraeum-repo>/docs/LOCAL_ENV.md`). Live-Forum und Live-DB werden
 nicht angefasst.
 
 ---
@@ -27,7 +27,7 @@ nicht angefasst.
       (außer Shop- und Relatives-Provider-Hook) mit leeren Handlern. Handler bleiben dünn und
       delegieren an die Services.
 - **Dateien:** `inc/plugins/anschlusssuche.php`, leere Klassen-Skelette in `core/`
-- **Vorlage:** `D:\mybb-plugin-dev-kit\standards\boilerplate.md` §1, §2 · `conventions.md` §1–§3
+- **Vorlage:** `<dev-kit>/standards/boilerplate.md` §1, §2 · `conventions.md` §1–§3
 - **Abnahme:** `php -l` auf allen Dateien (7.4 + 8.4); Plugin erscheint in der ACP-Pluginliste.
 
 ## Schritt 2 – Lifecycle: install / is_installed / uninstall
@@ -212,7 +212,7 @@ nicht angefasst.
 - **Dateien:** `inc/languages/english/anschlusssuche.lang.php` (+ `admin/`),
   `inc/languages/deutsch_du/anschlusssuche.lang.php` (+ `admin/`)
 - **Vorlage:** `boilerplate.md` §13
-- **Abnahme:** `D:\mybb-plugin-dev-kit\scripts\lang_check.ps1` ohne fehlende Keys.
+- **Abnahme:** `<dev-kit>/scripts/lang_check.ps1` ohne fehlende Keys.
 
 ## Schritt 15 – Selbsttests finalisieren
 - [x] **Ziel:** `tests/cli-plugin.php` (Lifecycle) + `tests/cli-selftest.php` (FieldTypes,

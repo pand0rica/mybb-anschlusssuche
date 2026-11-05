@@ -3,18 +3,18 @@
 Du setzt das MyBB-1.8-Plugin **Anschluss-Suchmaschine** (Codename `anschlusssuche`) um. Das
 Umsetzungs-Paket aus Phase 1 liegt bereits vollständig im Repo:
 
-  F:\RPG\Mybb Plugins - eigene\anschluss suchmaschine
+  mybb-anschlusssuche
 
 Lies in dieser Reihenfolge, BEVOR du irgendetwas tust:
 1. `AGENTS.md` (dieses Repo) – Pointer aufs Dev-Kit, 5 goldene Regeln, Phasen-Zuordnung.
 2. `PROJECT_CONTEXT.md` (dieses Repo) – Architektur, Tabellen, Settings, Hooks, Abhängigkeiten,
    „What NOT to change".
 3. `IMPLEMENTATION_PLAN.md` (dieses Repo) – die nummerierten Arbeitsschritte.
-4. Aus dem Dev-Kit bei Bedarf: `D:\mybb-plugin-dev-kit\standards\boilerplate.md` (kopierfertige
-   Code-Vorlagen) und `D:\mybb-plugin-dev-kit\standards\conventions.md` (Naming, DB, Hooks,
+4. Aus dem Dev-Kit bei Bedarf: `<dev-kit>/standards/boilerplate.md` (kopierfertige
+   Code-Vorlagen) und `<dev-kit>/standards/conventions.md` (Naming, DB, Hooks,
    Security).
 
-Folge danach exakt `D:\mybb-plugin-dev-kit\workflows\2-implement.md`:
+Folge danach exakt `<dev-kit>/workflows/2-implement.md`:
 - Arbeite die Schritte aus `IMPLEMENTATION_PLAN.md` der Reihe nach ab und hake sie dort ab
   (`- [x]`), inklusive des jeweiligen Test-/Abnahmehinweises.
 - Halte bei jedem Schritt die 5 goldenen Regeln ein: keine Core-Dateien ändern, `TABLE_PREFIX`
@@ -30,7 +30,7 @@ Folge danach exakt `D:\mybb-plugin-dev-kit\workflows\2-implement.md`:
 **Abhängigkeiten:** Es gibt keine harten Abhängigkeiten, die Schritte 1–8 und 10–15 können
 sofort starten.
 - **Schritt 9** (lose Gesuche aus Relatives) setzt die API-Erweiterung im Relatives-Repo
-  `F:\RPG\Mybb Plugins - eigene\relatives` voraus. Dazu gehören `limit`/`offset`/`order`,
+  `mybb-relatives` voraus. Dazu gehören `limit`/`offset`/`order`,
   `owner_uids`, `ids`, `relatives_count_persons()` und `relationship_description` (siehe
   `PROJECT_CONTEXT.md` „Abhängigkeiten“). Frag vor Schritt 9 den Nutzer, ob diese Erweiterung
   umgesetzt ist. Falls nicht, setz nur die UserCP-Quelle um und bereite den Relatives-Teil

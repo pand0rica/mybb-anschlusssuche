@@ -191,7 +191,7 @@ Icon-Zeile der Felder mit `show_list = 1` (Icon aus `fields.icon`), „Anschluss
 
 ## Abhängigkeiten
 - **Keine harten Abhängigkeiten.** Das Plugin läuft ohne weitere Plugins.
-- **Relatives** (`F:\RPG\Mybb Plugins - eigene\relatives`, optional): Quelle 1 der losen
+- **Relatives** (`mybb-relatives`, optional): Quelle 1 der losen
   Gesuche. Erkennung über Plugin-Cache **und** `function_exists('relatives_count_persons')`
   (= Mindestversion mit API-Erweiterung, siehe unten). Fehlt eins davon, werden nur die eigenen
   losen Gesuche gezeigt – kein Fehler. Zugriff **ausschließlich** über `RelativesAdapter` →
@@ -287,7 +287,7 @@ Recht `tools/anschlusssuche`: `activate()` vergibt es an alle Admins/Gruppen mit
 ## Migration (extern – Migration 012 im Aufräum-Repo)
 Das Plugin enthält **kein** Migrationstool. Die H4W-Datenübernahme (xThreads-Felder, Werte,
 Header-Settings, Template-Aufräumen) läuft als idempotente Migration
-`F:\RPG\H4W Administratives\mybb aufräumen\migrations\012_anschlusssuche.php`, beschrieben in
+`<aufraeum-repo>/migrations/012_anschlusssuche.php`, beschrieben in
 `docs\migration-012-gesuche.md` dort. Sie nutzt ausschließlich die öffentlichen Funktionen
 `anschlusssuche_entry_save()` / `anschlusssuche_header_add()` sowie `Installer`-Teile
 (Tabellen, Settings, Templates, Stylesheet) – kein vollständiger `_activate()`-Lauf nötig.
