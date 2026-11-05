@@ -49,6 +49,16 @@ management for wanted characters.
 - CLI tests `tests/cli-plugin.php` (lifecycle) and `tests/cli-selftest.php` (logic and DB
   round trips).
 
+### Security (review)
+- ACP CSRF protection uses MyBB's native mechanism (dev kit `debugging.md` #23): write
+  handlers only act on POST and `admin/index.php` validates the `my_post_key` itself –
+  no own key check or helper.
+
+### Changed (review)
+- German empty-profile text no longer uses the colon gender form (“Diese:r Spieler:in”);
+  it now reads “Für diesen Account gibt es aktuell keine Gesuche.”
+- Plugin website points to `pand0rica/mybb-anschlusssuche`.
+
 ### Fixed (during development, before release)
 - The thread-list row template was escaped twice when it replaced `forumdisplay_thread`.
 - Validation errors in the new-thread form showed the language key instead of the message, and
@@ -57,3 +67,7 @@ management for wanted characters.
   (wrong return type).
 - Editing a group ad inside an archive forum of type *single* would have converted it into a
   single ad; the stored type now always wins.
+
+### Fixed
+- Default fields are created in the ACP language: titles and options of the five default fields (age, gender, relation, other, connections) and the default of `anschlusssuche_relatives_gender_map` come from the admin language file (`anschlusssuche_default_*`, English fallback). Previously a German forum got “Age”, “Gender”, “male/female …” and had to rename everything by hand; the gender mapping uses the same words as the gender options so filters keep matching. Only affects new installations.
+

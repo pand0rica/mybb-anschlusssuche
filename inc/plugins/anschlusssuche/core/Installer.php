@@ -256,7 +256,7 @@ class Anschlusssuche_Installer
             ['anschlusssuche_loose_groups', 'Groups allowed to create loose ads', 'User groups that may create loose ads in the User CP.', 'groupselect', '-1'],
             ['anschlusssuche_loose_max_per_user', 'Max. loose ads per account', 'Maximum number of loose ads per account (0 = unlimited).', 'numeric', '0'],
             ['anschlusssuche_relatives_enabled', 'Include Relatives', 'Show persons marked as wanted in the Relatives plugin as loose ads (requires a Relatives version with relatives_count_persons()).', 'yesno', '1'],
-            ['anschlusssuche_relatives_gender_map', 'Relatives gender mapping', 'One line per code: code=label. Maps the Relatives gender code to the label used for display and filters.', 'textarea', "0=male\n1=female\n2=diverse"],
+            ['anschlusssuche_relatives_gender_map', 'Relatives gender mapping', 'One line per code: code=label. Maps the Relatives gender code to the label used for display and filters.', 'textarea', self::default_gender_map()],
             ['anschlusssuche_profile_enabled', 'Show in profile', 'Show the ads block in user profiles (variable {$anschlusssuche_profile}).', 'yesno', '1'],
             ['anschlusssuche_profile_show_done', 'Show finished ads in profile', 'Show ads from archive forums as their own section in the profile.', 'yesno', '0'],
             ['anschlusssuche_profile_hide_relatives', 'Hide Relatives persons in profile', 'Do not list persons from the Relatives plugin in the profile block (useful when the Relatives wanted box is shown in the profile as well).', 'yesno', '0'],
@@ -474,12 +474,14 @@ class Anschlusssuche_Installer
             return;
         }
 
+        // Titel und Optionen in der Sprache des ACP anlegen (Fallback: Englisch).
+        $t = self::default_strings();
         $defaults = [
-            ['age', 'Age', 'age_range', 0, '', 'fas fa-birthday-cake', 1],
-            ['gender', 'Gender', 'radio', 1, "male\nfemale\ndiverse\nany", 'fas fa-venus-mars', 1],
-            ['relation', 'Relation', 'select', 0, "Family\nFriendship\nRomance\nEnmity\nWork\nOther", 'fas fa-street-view', 1],
-            ['tags', 'Other', 'text', 0, '', 'far fa-bookmark', 0],
-            ['links', 'Connections', 'links', 0, '', 'fas fa-star', 0],
+            ['age', $t['age'], 'age_range', 0, '', 'fas fa-birthday-cake', 1],
+            ['gender', $t['gender'], 'radio', 1, $t['gender_options'], 'fas fa-venus-mars', 1],
+            ['relation', $t['relation'], 'select', 0, $t['relation_options'], 'fas fa-street-view', 1],
+            ['tags', $t['tags'], 'text', 0, '', 'far fa-bookmark', 0],
+            ['links', $t['links'], 'links', 0, '', 'fas fa-star', 0],
         ];
 
         foreach (['single', 'group', 'loose'] as $type) {
@@ -503,6 +505,52 @@ class Anschlusssuche_Installer
                 ]);
             }
         }
+    }
+
+    /**
+     * Standardtitel/-optionen der mitgelieferten Felder aus der Admin-Sprachdatei
+     * (anschlusssuche_default_*). Fehlt ein Eintrag, gilt der englische Text.
+     */
+    private static function default_strings(): array
+    {
+        global $lang;
+
+        $fallback = [
+            'age'              => 'Age',
+            'gender'           => 'Gender',
+            'gender_options'   => "male\nfemale\ndiverse\nany",
+            'relation'         => 'Relation',
+            'relation_options' => "Family\nFriendship\nRomance\nEnmity\nWork\nOther",
+            'tags'             => 'Other',
+            'links'            => 'Connections',
+        ];
+        if (!is_object($lang)) {
+            return $fallback;
+        }
+        $lang->load('anschlusssuche', false, true);
+        $out = [];
+        foreach ($fallback as $key => $default) {
+            $var = 'anschlusssuche_default_' . $key;
+            $value = isset($lang->$var) ? trim(str_replace("\r", '', (string)$lang->$var)) : '';
+            $out[$key] = $value !== '' ? $value : $default;
+        }
+        return $out;
+    }
+
+    /**
+     * Vorgabe für anschlusssuche_relatives_gender_map: dieselben Begriffe wie die ersten
+     * drei Optionen des Geschlecht-Felds, damit Filter und Relatives-Personen zusammenpassen.
+     */
+    private static function default_gender_map(): string
+    {
+        $options = explode("\n", self::default_strings()['gender_options']);
+        $labels = array_pad(array_slice($options, 0, 3), 3, '');
+        $english = ['male', 'female', 'diverse'];
+        $lines = [];
+        foreach ($labels as $code => $label) {
+            $lines[] = $code . '=' . ($label !== '' ? $label : $english[$code]);
+        }
+        return implode("\n", $lines);
     }
 
     private static function require_theme_functions(): void

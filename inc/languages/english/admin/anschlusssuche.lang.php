@@ -173,3 +173,12 @@ $l['setting_anschlusssuche_shop_enabled'] = 'NewPoints shop (prepared)';
 $l['setting_anschlusssuche_shop_enabled_desc'] = 'Allow buying fixed header slots via the NewPoints shop. Prepared for a later version – currently without effect.';
 $l['setting_anschlusssuche_shop_max_concurrent'] = 'Shop: max. concurrent header slots';
 $l['setting_anschlusssuche_shop_max_concurrent_desc'] = 'Maximum number of purchased header entries at the same time (0 = header count).';
+
+// Default fields created on first installation (title, options one per line)
+$l['anschlusssuche_default_age'] = 'Age';
+$l['anschlusssuche_default_gender'] = 'Gender';
+$l['anschlusssuche_default_gender_options'] = "male\nfemale\ndiverse\nany";
+$l['anschlusssuche_default_relation'] = 'Relation';
+$l['anschlusssuche_default_relation_options'] = "Family\nFriendship\nRomance\nEnmity\nWork\nOther";
+$l['anschlusssuche_default_tags'] = 'Other';
+$l['anschlusssuche_default_links'] = 'Connections';

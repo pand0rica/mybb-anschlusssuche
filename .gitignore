@@ -14,9 +14,6 @@ TODO.md
 # Local dev helper (paths of the local test forum)
 tests/deploy-local.sh
 
-# Forum post (maintained separately, not code)
-PLUGIN_POST.html
-
 # OS / editor
 .DS_Store
 Thumbs.db

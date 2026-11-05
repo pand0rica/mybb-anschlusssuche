@@ -173,3 +173,12 @@ $l['setting_anschlusssuche_shop_enabled'] = 'NewPoints-Shop (vorbereitet)';
 $l['setting_anschlusssuche_shop_enabled_desc'] = 'Feste Header-Plätze über den NewPoints-Shop kaufen. Für eine spätere Version vorbereitet – derzeit ohne Wirkung.';
 $l['setting_anschlusssuche_shop_max_concurrent'] = 'Shop: max. gleichzeitige Header-Plätze';
 $l['setting_anschlusssuche_shop_max_concurrent_desc'] = 'Höchstzahl gekaufter Header-Einträge zur selben Zeit (0 = Header-Anzahl).';
+
+// Standardfelder, die bei der ersten Installation angelegt werden (Titel, Optionen je Zeile)
+$l['anschlusssuche_default_age'] = 'Alter';
+$l['anschlusssuche_default_gender'] = 'Geschlecht';
+$l['anschlusssuche_default_gender_options'] = "männlich\nweiblich\ndivers\negal";
+$l['anschlusssuche_default_relation'] = 'Beziehung';
+$l['anschlusssuche_default_relation_options'] = "Familie\nFreundschaft\nRomanze\nFeindschaft\nArbeit\nSonstiges";
+$l['anschlusssuche_default_tags'] = 'Sonstiges';
+$l['anschlusssuche_default_links'] = 'Verbindungen';

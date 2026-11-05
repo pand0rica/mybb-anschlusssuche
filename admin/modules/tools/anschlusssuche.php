@@ -11,9 +11,6 @@ $lang->load('anschlusssuche');
 
 $page->add_breadcrumb_item($lang->anschlusssuche, 'index.php?module=tools-anschlusssuche');
 
-if ($mybb->request_method === 'post') {
-    verify_post_check($mybb->get_input('my_post_key'));
-}
 
 if (!function_exists('anschlusssuche_is_installed') || !anschlusssuche_is_installed()) {
     flash_message($lang->anschlusssuche_not_installed, 'error');
