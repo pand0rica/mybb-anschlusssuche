@@ -9,3 +9,4 @@ nie umgekehrt. Deploy ins h4w-Test-/Live-Forum von diesem Branch.
 | Bereich | Dateien | Zweck |
 |---|---|---|
 | h4w-Markup (Template-Set des h4w-Themes) | `inc/plugins/anschlusssuche/templates/anschlusssuche_form_fields.tpl`, `anschlusssuche_form_row.tpl` | Formularzeilen im Neuer-Thread-Formular als `div.h4w-post-item` statt `<tr><td>`. Templates `anschlusssuche_form_fields`, `anschlusssuche_form_row`. |
+| h4w-Markup (Template-Set des h4w-Themes) | `inc/plugins/anschlusssuche/templates/anschlusssuche_forumdisplay_thread.tpl` | Thread-Zeile in der Forumsansicht mit h4w-Klassen (`h4w-mobile-invis`, `h4w-threadlist-lastpost-lastpost`) und der Variable `{$threadsolved}`. Template `anschlusssuche_forumdisplay_thread`. |
